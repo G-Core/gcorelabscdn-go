@@ -14,6 +14,8 @@ type ResourceService interface {
 	Create(ctx context.Context, req *CreateRequest) (*Resource, error)
 }
 
+var _ ResourceService = (*Service)(nil)
+
 type Service struct {
 	root gcore.Pather
 	r    gcore.Requester

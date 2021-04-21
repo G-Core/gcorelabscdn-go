@@ -9,6 +9,8 @@ type ClientService interface {
 	Resources(opts ...resources.ServiceOption) resources.ResourceService
 }
 
+var _ ClientService = (*Service)(nil)
+
 type Service struct {
 	r       gcore.Requester
 	baseURL string
@@ -22,6 +24,6 @@ func (s *Service) Path() string {
 	return s.baseURL
 }
 
-func (s *Service) Resources(opts ...resources.ServiceOption) *resources.Service {
+func (s *Service) Resources(opts ...resources.ServiceOption) resources.ResourceService {
 	return resources.NewService(s, s.r, opts...)
 }
