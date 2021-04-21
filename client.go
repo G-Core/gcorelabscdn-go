@@ -6,7 +6,7 @@ import (
 )
 
 type ClientService interface {
-	Resources(opts ...resources.ServiceOption) *resources.Service
+	Resources(opts ...resources.ServiceOption) resources.ResourceService
 }
 
 type Service struct {

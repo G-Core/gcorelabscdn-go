@@ -10,6 +10,7 @@ import (
 )
 
 type ResourceService interface {
+	Rules(opts ...rules.ServiceOption) rules.RulesService
 	Create(ctx context.Context, req *CreateRequest) (*Resource, error)
 }
 
