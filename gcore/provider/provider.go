@@ -13,14 +13,15 @@ import (
 )
 
 type Client struct {
-	httpc  *http.Client
-	signer gcore.RequestSigner
-	ua     string
+	httpc   *http.Client
+	signer  gcore.RequestSigner
+	ua      string
+	baseURL string
 }
 
-func NewClient(opts ...ClientOption) *Client {
+func NewClient(baseURL string, opts ...ClientOption) *Client {
 	httpc := &http.Client{Timeout: time.Minute}
-	c := &Client{httpc: httpc}
+	c := &Client{httpc: httpc, baseURL: baseURL}
 
 	for _, opt := range opts {
 		opt(c)
@@ -40,7 +41,8 @@ func (c *Client) Request(ctx context.Context, method, path string, payload inter
 		body = payloadBuf
 	}
 
-	req, err := http.NewRequestWithContext(ctx, method, path, body)
+	// TODO: figure out how to drop trailing slash
+	req, err := http.NewRequestWithContext(ctx, method, c.baseURL+path, body)
 	if err != nil {
 		return fmt.Errorf("new request: %w", err)
 	}
@@ -57,8 +59,10 @@ func (c *Client) Request(ctx context.Context, method, path string, payload inter
 		}
 	}
 
-	if err := json.NewDecoder(resp.Body).Decode(result); err != nil {
-		return fmt.Errorf("decode successful resp %d: %w", resp.StatusCode, err)
+	if result != nil {
+		if err := json.NewDecoder(resp.Body).Decode(result); err != nil {
+			return fmt.Errorf("decode successful resp %d: %w", resp.StatusCode, err)
+		}
 	}
 
 	return nil

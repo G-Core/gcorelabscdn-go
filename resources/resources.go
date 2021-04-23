@@ -4,72 +4,101 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/G-Core/gcorelabscdn-go/gcore"
-	"github.com/G-Core/gcorelabscdn-go/resources/rules"
 )
 
 type ResourceService interface {
-	Rules(opts ...rules.ServiceOption) rules.RulesService
 	Create(ctx context.Context, req *CreateRequest) (*Resource, error)
+	Get(ctx context.Context, id int64) (*Resource, error)
+	Update(ctx context.Context, id int64, req *UpdateRequest) (*Resource, error)
 }
 
 var _ ResourceService = (*Service)(nil)
 
 type Service struct {
-	root gcore.Pather
-	r    gcore.Requester
-	path string
+	r gcore.Requester
 }
 
-type ServiceOption func(*Service)
-
-func WithID(id int64) ServiceOption {
-	return func(s *Service) {
-		s.path = fmt.Sprintf("%s/%d", s.path, id)
-	}
-}
-
-func NewService(root gcore.Pather, r gcore.Requester, opts ...ServiceOption) *Service {
-	s := &Service{root: root, r: r, path: "/resources"}
-
-	for _, opt := range opts {
-		opt(s)
-	}
-
-	return s
-}
-
-func (s *Service) Path() string {
-	return s.root.Path() + s.path
-}
-
-func (s *Service) Rules(opts ...rules.ServiceOption) rules.RulesService {
-	return rules.NewService(s, s.r, opts...)
+func NewService(r gcore.Requester) *Service {
+	return &Service{r: r}
 }
 
 func (s *Service) Create(ctx context.Context, req *CreateRequest) (*Resource, error) {
 	var resource Resource
-	if err := s.r.Request(ctx, http.MethodPost, s.path, req, &resource); err != nil {
+	if err := s.r.Request(ctx, http.MethodPost, "/resources", req, &resource); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
 
 	return &resource, nil
 }
 
+func (s *Service) Get(ctx context.Context, id int64) (*Resource, error) {
+	var resource Resource
+	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/resources/%d", id), nil, &resource); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return &resource, nil
+}
+
+func (s *Service) Update(ctx context.Context, id int64, req *UpdateRequest) (*Resource, error) {
+	var resource Resource
+	if err := s.r.Request(ctx, http.MethodPut, fmt.Sprintf("/resources/%d", id), req, &resource); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return &resource, nil
+}
+
+type Protocol string
+
+const (
+	HTTPProtocol   Protocol = "HTTP"
+	HTTPSProtocol  Protocol = "HTTPS"
+	MatchProtocaol Protocol = "MATCH"
+)
+
+type ResourceStatus string
+
+const (
+	ActiveResourceStatus    ResourceStatus = "Active"
+	SuspendedResourceStatus ResourceStatus = "Suspended"
+	ProcessedResourceStatus ResourceStatus = "Processed"
+)
+
 type CreateRequest struct {
-	Cname              string
-	OriginGroup        int
-	Origin             string
-	SecondaryHostnames []string
+	Cname              string   `json:"cname"`
+	OriginGroup        int      `json:"originGroup"`
+	Origin             string   `json:"origin"`
+	SecondaryHostnames []string `json:"secondaryHostnames"`
+}
+
+type UpdateRequest struct {
+	Active             bool     `json:"active"`
+	OriginGroup        int      `json:"originGroup"`
+	Origin             string   `json:"origin"`
+	SecondaryHostnames []string `json:"secondaryHostnames"`
+	SSlEnabled         bool     `json:"sslEnabled"`
+	SSLData            int      `json:"sslData"`
+	SSLAutomated       bool     `json:"ssl_automated"`
+	OriginProtocol     Protocol `json:"originProtocol"`
 }
 
 type Resource struct {
-	ID                 int64
-	Status             string
-	Client             int64
-	OriginGroup        int64
-	Cname              string
-	SecondaryHostnames []string
-	Shielded           bool
+	ID                 int64          `json:"id"`
+	Name               string         `json:"name"`
+	CreatedAt          time.Time      `json:"created"`
+	UpdatedAt          time.Time      `json:"updated"`
+	Status             ResourceStatus `json:"stratus"`
+	Client             int64          `json:"client"`
+	OriginGroup        int64          `json:"originGroup"`
+	Cname              string         `json:"cname"`
+	SecondaryHostnames []string       `json:"secondaryHostnames"`
+	Shielded           bool           `json:"shielded"`
+	SSlEnabled         bool           `json:"sslEnabled"`
+	SSLData            int            `json:"sslData"`
+	SSLAutomated       bool           `json:"ssl_automated"`
+	OriginProtocol     Protocol       `json:"originProtocol"`
 }

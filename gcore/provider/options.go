@@ -25,3 +25,9 @@ func WithSignerFunc(f gcore.RequestSignerFunc) ClientOption {
 		c.signer = f
 	}
 }
+
+func WithUA(ua string) ClientOption {
+	return func(c *Client) {
+		c.ua = ua
+	}
+}

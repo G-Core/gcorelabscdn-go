@@ -5,10 +5,6 @@ import (
 	"net/http"
 )
 
-type Pather interface {
-	Path() string
-}
-
 type Requester interface {
 	Request(ctx context.Context, method, path string, payload interface{}, result interface{}) error
 }
