@@ -12,10 +12,6 @@ func (resp *ErrorResponse) Error() string {
 		return resp.Message
 	}
 
-	b, err := json.MarshalIndent(resp.Errors, "", "\t")
-	if err != nil {
-
-	}
-
+	b, _ := json.MarshalIndent(resp.Errors, "", "\t")
 	return string(b)
 }

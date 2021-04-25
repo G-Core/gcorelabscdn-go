@@ -57,6 +57,8 @@ func (c *Client) Request(ctx context.Context, method, path string, payload inter
 		if err := json.NewDecoder(resp.Body).Decode(&errResp); err != nil {
 			return fmt.Errorf("decode err resp %d: %w", resp.StatusCode, err)
 		}
+
+		return &errResp
 	}
 
 	if result != nil {
