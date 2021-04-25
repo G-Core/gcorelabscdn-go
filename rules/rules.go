@@ -68,15 +68,15 @@ func (s *Service) Delete(ctx context.Context, resourceID, ruleID int64) error {
 }
 
 type CreateRequest struct {
-	Name     string `json:"name"`
-	Rule     string `json:"rule"`
-	RuleType int    `json:"ruleType"`
+	Name     string `json:"name,omitempty"`
+	Rule     string `json:"rule,omitempty"`
+	RuleType int    `json:"ruleType,omitempty"`
 }
 
 type UpdateRequest struct {
-	Name     string `json:"name"`
-	Rule     string `json:"rule"`
-	RuleType int    `json:"ruleType"`
+	Name     string `json:"name,omitempty"`
+	Rule     string `json:"rule,omitempty"`
+	RuleType int    `json:"ruleType,omitempty"`
 }
 
 type Rule struct {

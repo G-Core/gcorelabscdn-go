@@ -69,21 +69,21 @@ const (
 )
 
 type CreateRequest struct {
-	Cname              string   `json:"cname"`
-	OriginGroup        int      `json:"originGroup"`
-	Origin             string   `json:"origin"`
-	SecondaryHostnames []string `json:"secondaryHostnames"`
+	Cname              string   `json:"cname,omitempty"`
+	OriginGroup        int      `json:"originGroup,omitempty"`
+	Origin             string   `json:"origin,omitempty"`
+	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
 }
 
 type UpdateRequest struct {
-	Active             bool     `json:"active"`
-	OriginGroup        int      `json:"originGroup"`
-	Origin             string   `json:"origin"`
-	SecondaryHostnames []string `json:"secondaryHostnames"`
-	SSlEnabled         bool     `json:"sslEnabled"`
-	SSLData            int      `json:"sslData"`
-	SSLAutomated       bool     `json:"ssl_automated"`
-	OriginProtocol     Protocol `json:"originProtocol"`
+	Active             bool     `json:"active,omitempty"`
+	OriginGroup        int      `json:"originGroup,omitempty"`
+	Origin             string   `json:"origin,omitempty"`
+	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
+	SSlEnabled         bool     `json:"sslEnabled,omitempty"`
+	SSLData            int      `json:"sslData,omitempty"`
+	SSLAutomated       bool     `json:"ssl_automated,omitempty"`
+	OriginProtocol     Protocol `json:"originProtocol,omitempty"`
 }
 
 type Resource struct {
