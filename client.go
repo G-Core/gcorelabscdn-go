@@ -19,7 +19,7 @@ type Service struct {
 	rulesService     rules.RulesService
 }
 
-func NewService(baseURL string, r gcore.Requester) *Service {
+func NewService(r gcore.Requester) *Service {
 	return &Service{
 		r:                r,
 		resourcesService: resources.NewService(r),
