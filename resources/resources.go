@@ -76,13 +76,13 @@ type CreateRequest struct {
 }
 
 type UpdateRequest struct {
-	Active             bool     `json:"active,omitempty"`
+	Active             bool     `json:"active"`
 	OriginGroup        int      `json:"originGroup,omitempty"`
 	Origin             string   `json:"origin,omitempty"`
 	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
-	SSlEnabled         bool     `json:"sslEnabled,omitempty"`
+	SSlEnabled         bool     `json:"sslEnabled"`
 	SSLData            int      `json:"sslData,omitempty"`
-	SSLAutomated       bool     `json:"ssl_automated,omitempty"`
+	SSLAutomated       bool     `json:"ssl_automated"`
 	OriginProtocol     Protocol `json:"originProtocol,omitempty"`
 }
 
@@ -92,6 +92,7 @@ type Resource struct {
 	CreatedAt          time.Time      `json:"created"`
 	UpdatedAt          time.Time      `json:"updated"`
 	Status             ResourceStatus `json:"stratus"`
+	Active             bool           `json:"active"`
 	Client             int64          `json:"client"`
 	OriginGroup        int64          `json:"originGroup"`
 	Cname              string         `json:"cname"`
