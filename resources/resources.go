@@ -77,8 +77,7 @@ type CreateRequest struct {
 
 type UpdateRequest struct {
 	Active             bool     `json:"active"`
-	OriginGroup        int      `json:"originGroup,omitempty"`
-	Origin             string   `json:"origin,omitempty"`
+	OriginGroup        int      `json:"originGroup"`
 	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
 	SSlEnabled         bool     `json:"sslEnabled"`
 	SSLData            int      `json:"sslData,omitempty"`
