@@ -52,7 +52,7 @@ type Resource struct {
 	Name               string         `json:"name"`
 	CreatedAt          time.Time      `json:"created"`
 	UpdatedAt          time.Time      `json:"updated"`
-	Status             ResourceStatus `json:"stratus"`
+	Status             ResourceStatus `json:"status"`
 	Active             bool           `json:"active"`
 	Client             int64          `json:"client"`
 	OriginGroup        int64          `json:"originGroup"`
