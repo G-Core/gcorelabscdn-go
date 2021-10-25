@@ -2,6 +2,7 @@ package gcore
 
 type Options struct {
 	EdgeCacheSettings *EdgeCacheSettings `json:"edge_cache_settings,omitempty"`
+	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings,omitempty"`
 	HostHeader        *HostHeader        `json:"hostHeader,omitempty"`
 }
 
@@ -15,4 +16,9 @@ type EdgeCacheSettings struct {
 type HostHeader struct {
 	Enabled bool   `json:"enabled"`
 	Value   string `json:"value"`
+}
+
+type BrowserCacheSettings struct {
+	Enabled      bool              `json:"enabled"`
+	Value        string            `json:"value"`
 }
