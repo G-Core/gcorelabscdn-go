@@ -3,7 +3,7 @@ package rules
 import (
 	"context"
 
-	"github.com/G-Core/gcorelabscdn-go/gcore"
+	"github.com/skyeng/gcorelabscdn-go/gcore"
 )
 
 type RulesService interface {
