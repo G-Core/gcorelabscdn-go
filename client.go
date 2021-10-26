@@ -1,11 +1,11 @@
 package gcdn
 
 import (
-	"github.com/skyeng/gcorelabscdn-go/gcore"
-	"github.com/skyeng/gcorelabscdn-go/origingroups"
-	"github.com/skyeng/gcorelabscdn-go/resources"
-	"github.com/skyeng/gcorelabscdn-go/rules"
-	"github.com/skyeng/gcorelabscdn-go/sslcerts"
+	"github.com/G-Core/gcorelabscdn-go/gcore"
+	"github.com/G-Core/gcorelabscdn-go/origingroups"
+	"github.com/G-Core/gcorelabscdn-go/resources"
+	"github.com/G-Core/gcorelabscdn-go/rules"
+	"github.com/G-Core/gcorelabscdn-go/sslcerts"
 )
 
 type ClientService interface {

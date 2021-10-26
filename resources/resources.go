@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/skyeng/gcorelabscdn-go/gcore"
+	"github.com/G-Core/gcorelabscdn-go/gcore"
 )
 
 type ResourceService interface {
