@@ -5,6 +5,7 @@ type Options struct {
 	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings,omitempty"`
 	HostHeader        *HostHeader        `json:"hostHeader,omitempty"`
 	Webp			*Webp      	  `json:"webp,omitempty"`
+	Rewrite			*Rewrite      	  `json:"rewrite,omitempty"`
 }
 
 type EdgeCacheSettings struct {
@@ -29,4 +30,10 @@ type Webp struct {
 	JPGQuality  int		`json:"jpg_quality"`
 	PNGQuality  int		`json:"png_quality"`
 	PNGLossless	bool 	`json:"png_lossless"`
+}
+
+type Rewrite struct {
+	Enabled     bool              `json:"enabled"`
+	Body        string            `json:"body"`
+	Flag		string            `json:"flag"`
 }
