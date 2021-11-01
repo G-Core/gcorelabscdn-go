@@ -6,6 +6,7 @@ type Options struct {
 	HostHeader        *HostHeader        `json:"hostHeader,omitempty"`
 	Webp			*Webp      	  `json:"webp,omitempty"`
 	Rewrite			*Rewrite      	  `json:"rewrite,omitempty"`
+	RedirectHttpToHttps			*RedirectHttpToHttps      	  `json:"redirect_http_to_https,omitempty"`
 }
 
 type EdgeCacheSettings struct {
@@ -36,4 +37,9 @@ type Rewrite struct {
 	Enabled     bool              `json:"enabled"`
 	Body        string            `json:"body"`
 	Flag		string            `json:"flag"`
+}
+
+type RedirectHttpToHttps struct {
+	Enabled     bool            `json:"enabled"`
+	Value       bool            `json:"value"`
 }
