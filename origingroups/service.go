@@ -30,7 +30,7 @@ func (s *Service) Create(ctx context.Context, req *GroupRequest) (*OriginGroup, 
 func (s *Service) Get(ctx context.Context, id int64) (*OriginGroup, error) {
 	var group OriginGroup
 	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/originGroups/%d", id), nil, &group); err != nil {
-		return nil, fmt.Errorf("request: %w", err)
+		return nil, fmt.Errorf("request: %w;;; /originGroups/%d", err, id)
 	}
 
 	return &group, nil
