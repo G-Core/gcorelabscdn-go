@@ -7,6 +7,7 @@ type Options struct {
 	Webp			*Webp      	  `json:"webp,omitempty"`
 	Rewrite			*Rewrite      	  `json:"rewrite,omitempty"`
 	RedirectHttpToHttps			*RedirectHttpToHttps      	  `json:"redirect_http_to_https,omitempty"`
+	Cors			*Cors      	  `json:"cors,omitempty"`
 }
 
 type EdgeCacheSettings struct {
@@ -22,8 +23,8 @@ type HostHeader struct {
 }
 
 type BrowserCacheSettings struct {
-	Enabled      bool              `json:"enabled"`
-	Value        string            `json:"value"`
+	Enabled		bool	`json:"enabled"`
+	Value       string  `json:"value"`
 }
 
 type Webp struct {
@@ -34,12 +35,17 @@ type Webp struct {
 }
 
 type Rewrite struct {
-	Enabled     bool              `json:"enabled"`
-	Body        string            `json:"body"`
-	Flag		string            `json:"flag"`
+	Enabled		bool    `json:"enabled"`
+	Body        string  `json:"body"`
+	Flag		string	`json:"flag"`
 }
 
 type RedirectHttpToHttps struct {
-	Enabled     bool            `json:"enabled"`
-	Value       bool            `json:"value"`
+	Enabled     bool	`json:"enabled"`
+	Value       bool    `json:"value"`
+}
+
+type Cors struct {
+	Enabled     bool		`json:"enabled"`
+	Value       []string    `json:"value"`
 }
