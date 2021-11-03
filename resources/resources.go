@@ -16,9 +16,9 @@ type ResourceService interface {
 type Protocol string
 
 const (
-	HTTPProtocol   Protocol = "HTTP"
-	HTTPSProtocol  Protocol = "HTTPS"
-	MatchProtocaol Protocol = "MATCH"
+	HTTPProtocol  Protocol = "HTTP"
+	HTTPSProtocol Protocol = "HTTPS"
+	MatchProtocol Protocol = "MATCH"
 )
 
 type ResourceStatus string
