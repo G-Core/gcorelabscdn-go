@@ -7,6 +7,7 @@ type Options struct {
 	Webp			*Webp      	  `json:"webp,omitempty"`
 	Rewrite			*Rewrite      	  `json:"rewrite,omitempty"`
 	RedirectHttpToHttps			*RedirectHttpToHttps      	  `json:"redirect_http_to_https,omitempty"`
+	GzipOn			*GzipOn      	  `json:"gzipOn,omitempty"`
 	Cors			*Cors      	  `json:"cors,omitempty"`
 }
 
@@ -41,6 +42,11 @@ type Rewrite struct {
 }
 
 type RedirectHttpToHttps struct {
+	Enabled     bool	`json:"enabled"`
+	Value       bool    `json:"value"`
+}
+
+type GzipOn struct {
 	Enabled     bool	`json:"enabled"`
 	Value       bool    `json:"value"`
 }
