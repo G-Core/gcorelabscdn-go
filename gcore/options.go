@@ -5,6 +5,10 @@ type Options struct {
 	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings,omitempty"`
 	HostHeader        *HostHeader        `json:"hostHeader,omitempty"`
 	Webp			*Webp      	  `json:"webp,omitempty"`
+	Rewrite			*Rewrite      	  `json:"rewrite,omitempty"`
+	RedirectHttpToHttps			*RedirectHttpToHttps      	  `json:"redirect_http_to_https,omitempty"`
+	GzipOn			*GzipOn      	  `json:"gzipOn,omitempty"`
+	Cors			*Cors      	  `json:"cors,omitempty"`
 }
 
 type EdgeCacheSettings struct {
@@ -20,8 +24,8 @@ type HostHeader struct {
 }
 
 type BrowserCacheSettings struct {
-	Enabled      bool              `json:"enabled"`
-	Value        string            `json:"value"`
+	Enabled		bool	`json:"enabled"`
+	Value       string  `json:"value"`
 }
 
 type Webp struct {
@@ -29,4 +33,25 @@ type Webp struct {
 	JPGQuality  int		`json:"jpg_quality"`
 	PNGQuality  int		`json:"png_quality"`
 	PNGLossless	bool 	`json:"png_lossless"`
+}
+
+type Rewrite struct {
+	Enabled		bool    `json:"enabled"`
+	Body        string  `json:"body"`
+	Flag		string	`json:"flag"`
+}
+
+type RedirectHttpToHttps struct {
+	Enabled     bool	`json:"enabled"`
+	Value       bool    `json:"value"`
+}
+
+type GzipOn struct {
+	Enabled     bool	`json:"enabled"`
+	Value       bool    `json:"value"`
+}
+
+type Cors struct {
+	Enabled     bool		`json:"enabled"`
+	Value       []string    `json:"value"`
 }
