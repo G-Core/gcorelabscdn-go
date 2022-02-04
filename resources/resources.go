@@ -31,12 +31,14 @@ const (
 
 type CreateRequest struct {
 	Cname              string   `json:"cname,omitempty"`
+	Description        string   `json:"description"`
 	OriginGroup        int      `json:"originGroup,omitempty"`
 	Origin             string   `json:"origin,omitempty"`
 	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
 }
 
 type UpdateRequest struct {
+	Description        string         `json:"description"`
 	Active             bool           `json:"active"`
 	OriginGroup        int            `json:"originGroup"`
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
@@ -57,6 +59,7 @@ type Resource struct {
 	Client             int64          `json:"client"`
 	OriginGroup        int64          `json:"originGroup"`
 	Cname              string         `json:"cname"`
+	Description        string         `json:"description"`
 	SecondaryHostnames []string       `json:"secondaryHostnames"`
 	Shielded           bool           `json:"shielded"`
 	SSlEnabled         bool           `json:"sslEnabled"`
