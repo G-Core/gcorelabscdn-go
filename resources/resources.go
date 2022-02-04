@@ -50,6 +50,7 @@ type UpdateRequest struct {
 type Resource struct {
 	ID                 int64          `json:"id"`
 	Name               string         `json:"name"`
+	Description        string         `json:"description"`
 	CreatedAt          time.Time      `json:"created"`
 	UpdatedAt          time.Time      `json:"updated"`
 	Status             ResourceStatus `json:"status"`
