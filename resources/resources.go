@@ -30,11 +30,12 @@ const (
 )
 
 type CreateRequest struct {
-	Cname              string   `json:"cname,omitempty"`
-	Description        string   `json:"description"`
-	OriginGroup        int      `json:"originGroup,omitempty"`
-	Origin             string   `json:"origin,omitempty"`
-	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
+	Cname              string         `json:"cname,omitempty"`
+	Description        string         `json:"description"`
+	OriginGroup        int            `json:"originGroup,omitempty"`
+	Origin             string         `json:"origin,omitempty"`
+	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
+	Options            *gcore.Options `json:"options,omitempty"`
 }
 
 type UpdateRequest struct {
