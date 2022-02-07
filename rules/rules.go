@@ -14,9 +14,10 @@ type RulesService interface {
 }
 
 type CreateRequest struct {
-	Name     string `json:"name,omitempty"`
-	Rule     string `json:"rule,omitempty"`
-	RuleType int    `json:"ruleType"`
+	Name     string         `json:"name,omitempty"`
+	Rule     string         `json:"rule,omitempty"`
+	RuleType int            `json:"ruleType"`
+	Options  *gcore.Options `json:"options,omitempty"`
 }
 
 type UpdateRequest struct {
