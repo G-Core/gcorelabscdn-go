@@ -33,6 +33,7 @@ type CreateRequest struct {
 	Cname              string         `json:"cname,omitempty"`
 	Description        string         `json:"description"`
 	OriginGroup        int            `json:"originGroup,omitempty"`
+	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
 	Origin             string         `json:"origin,omitempty"`
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
 	Options            *gcore.Options `json:"options,omitempty"`
@@ -42,11 +43,11 @@ type UpdateRequest struct {
 	Description        string         `json:"description"`
 	Active             bool           `json:"active"`
 	OriginGroup        int            `json:"originGroup"`
+	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
 	SSLAutomated       bool           `json:"ssl_automated"`
-	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
