@@ -59,6 +59,6 @@ type Cors struct {
 
 type SNIOption struct {
 	Enabled        bool   `json:"enabled"`
-	SNIType        string `json:"sni_type,omitempty"`
-	CustomHostname string `json:"custom_hostname,omitempty"`
+	SNIType        string `json:"sni_type"`
+	CustomHostname string `json:"custom_hostname"`
 }
