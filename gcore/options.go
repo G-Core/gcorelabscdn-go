@@ -9,6 +9,7 @@ type Options struct {
 	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https,omitempty"`
 	GzipOn               *GzipOn               `json:"gzipOn,omitempty"`
 	Cors                 *Cors                 `json:"cors,omitempty"`
+	SNI                  *SNIOption            `json:"sni,omitempty"`
 }
 
 type EdgeCacheSettings struct {
@@ -54,4 +55,10 @@ type GzipOn struct {
 type Cors struct {
 	Enabled bool     `json:"enabled"`
 	Value   []string `json:"value"`
+}
+
+type SNIOption struct {
+	Enabled        bool   `json:"enabled"`
+	SNIType        string `json:"sni_type,omitempty"`
+	CustomHostname string `json:"custom_hostname,omitempty"`
 }
