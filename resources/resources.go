@@ -16,9 +16,9 @@ type ResourceService interface {
 type Protocol string
 
 const (
-	HTTPProtocol   Protocol = "HTTP"
-	HTTPSProtocol  Protocol = "HTTPS"
-	MatchProtocaol Protocol = "MATCH"
+	HTTPProtocol  Protocol = "HTTP"
+	HTTPSProtocol Protocol = "HTTPS"
+	MatchProtocol Protocol = "MATCH"
 )
 
 type ResourceStatus string
@@ -30,21 +30,24 @@ const (
 )
 
 type CreateRequest struct {
-	Cname              string   `json:"cname,omitempty"`
-	OriginGroup        int      `json:"originGroup,omitempty"`
-	Origin             string   `json:"origin,omitempty"`
-	SecondaryHostnames []string `json:"secondaryHostnames,omitempty"`
-	Description        string   `json:"description,omitempty"`
+	Cname              string         `json:"cname,omitempty"`
+	Description        string         `json:"description"`
+	OriginGroup        int            `json:"originGroup,omitempty"`
+	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
+	Origin             string         `json:"origin,omitempty"`
+	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
+	Options            *gcore.Options `json:"options,omitempty"`
 }
 
 type UpdateRequest struct {
+	Description        string         `json:"description"`
 	Active             bool           `json:"active"`
 	OriginGroup        int            `json:"originGroup"`
+	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
 	SSLAutomated       bool           `json:"ssl_automated"`
-	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
 	Options            *gcore.Options `json:"options,omitempty"`
 	Description        string         `json:"description,omitempty"`
 }
@@ -60,6 +63,7 @@ type Resource struct {
 	Client             int64          `json:"client"`
 	OriginGroup        int64          `json:"originGroup"`
 	Cname              string         `json:"cname"`
+	Description        string         `json:"description"`
 	SecondaryHostnames []string       `json:"secondaryHostnames"`
 	Shielded           bool           `json:"shielded"`
 	SSlEnabled         bool           `json:"sslEnabled"`

@@ -14,24 +14,28 @@ type RulesService interface {
 }
 
 type CreateRequest struct {
-	Name     string `json:"name,omitempty"`
-	Rule     string `json:"rule,omitempty"`
-	RuleType int    `json:"ruleType"`
+	Name                   string         `json:"name,omitempty"`
+	Rule                   string         `json:"rule,omitempty"`
+	RuleType               int            `json:"ruleType"`
+	OverrideOriginProtocol string         `json:"overrideOriginProtocol"`
+	Options                *gcore.Options `json:"options,omitempty"`
 }
 
 type UpdateRequest struct {
-	Name     string         `json:"name,omitempty"`
-	Rule     string         `json:"rule,omitempty"`
-	RuleType int            `json:"ruleType"`
-	Options  *gcore.Options `json:"options,omitempty"`
+	Name                   string         `json:"name,omitempty"`
+	Rule                   string         `json:"rule,omitempty"`
+	RuleType               int            `json:"ruleType"`
+	OverrideOriginProtocol string         `json:"overrideOriginProtocol"`
+	Options                *gcore.Options `json:"options,omitempty"`
 }
 
 type Rule struct {
-	ID          int64          `json:"id"`
-	Name        string         `json:"name"`
-	Deleted     bool           `json:"deleted"`
-	OriginGroup int            `json:"originGroup"`
-	Pattern     string         `json:"rule"`
-	Type        int            `json:"ruleType"`
-	Options     *gcore.Options `json:"options,omitempty"`
+	ID             int64          `json:"id"`
+	Name           string         `json:"name"`
+	Deleted        bool           `json:"deleted"`
+	OriginGroup    int            `json:"originGroup"`
+	OriginProtocol string         `json:"originProtocol"`
+	Pattern        string         `json:"rule"`
+	Type           int            `json:"ruleType"`
+	Options        *gcore.Options `json:"options,omitempty"`
 }

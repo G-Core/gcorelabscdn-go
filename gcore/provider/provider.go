@@ -76,7 +76,9 @@ func (c *Client) do(req *http.Request) (*http.Response, error) {
 		req.Header.Set("User-Agent", c.ua)
 	}
 	if c.signer != nil {
-		c.signer.Sign(req)
+		if err := c.signer.Sign(req); err != nil {
+			return nil, err
+		}
 	}
 
 	return c.httpc.Do(req)
