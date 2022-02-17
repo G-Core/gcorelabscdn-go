@@ -11,6 +11,8 @@ type Options struct {
 	Cors                 *Cors                 `json:"cors,omitempty"`
 	SNI                  *SNIOption            `json:"sni,omitempty"`
 	IgnoreQueryString    *IgnoreQueryString    `json:"ignoreQueryString"`
+	QueryParamsWhitelist *QueryParamsWhitelist `json:"query_params_whitelist"`
+	QueryParamsBlacklist *QueryParamsBlacklist `json:"query_params_blacklist"`
 }
 
 type EdgeCacheSettings struct {
@@ -67,4 +69,14 @@ type SNIOption struct {
 type IgnoreQueryString struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
+}
+
+type QueryParamsWhitelist struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
+}
+
+type QueryParamsBlacklist struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
 }
