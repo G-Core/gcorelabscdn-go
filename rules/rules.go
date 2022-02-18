@@ -30,12 +30,13 @@ type UpdateRequest struct {
 }
 
 type Rule struct {
-	ID             int64          `json:"id"`
-	Name           string         `json:"name"`
-	Deleted        bool           `json:"deleted"`
-	OriginGroup    int            `json:"originGroup"`
-	OriginProtocol string         `json:"originProtocol"`
-	Pattern        string         `json:"rule"`
-	Type           int            `json:"ruleType"`
-	Options        *gcore.Options `json:"options,omitempty"`
+	ID                     int64          `json:"id"`
+	Name                   string         `json:"name"`
+	Deleted                bool           `json:"deleted"`
+	OriginGroup            int            `json:"originGroup"`
+	OriginProtocol         string         `json:"originProtocol"`
+	OverrideOriginProtocol *string        `json:"overrideOriginProtocol"`
+	Pattern                string         `json:"rule"`
+	Type                   int            `json:"ruleType"`
+	Options                *gcore.Options `json:"options,omitempty"`
 }
