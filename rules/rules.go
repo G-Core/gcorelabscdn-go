@@ -17,7 +17,7 @@ type CreateRequest struct {
 	Name                   string         `json:"name,omitempty"`
 	Rule                   string         `json:"rule,omitempty"`
 	RuleType               int            `json:"ruleType"`
-	OverrideOriginProtocol string         `json:"overrideOriginProtocol"`
+	OverrideOriginProtocol *string        `json:"overrideOriginProtocol"`
 	Options                *gcore.Options `json:"options,omitempty"`
 }
 
@@ -25,7 +25,7 @@ type UpdateRequest struct {
 	Name                   string         `json:"name,omitempty"`
 	Rule                   string         `json:"rule,omitempty"`
 	RuleType               int            `json:"ruleType"`
-	OverrideOriginProtocol string         `json:"overrideOriginProtocol"`
+	OverrideOriginProtocol *string        `json:"overrideOriginProtocol"`
 	Options                *gcore.Options `json:"options,omitempty"`
 }
 
