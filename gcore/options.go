@@ -7,7 +7,7 @@ type Options struct {
 	Webp                 *Webp                 `json:"webp,omitempty"`
 	Rewrite              *Rewrite              `json:"rewrite,omitempty"`
 	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https,omitempty"`
-	GzipOn               *GzipOn               `json:"gzipOn,omitempty"`
+	GzipOn               *GzipOn               `json:"gzipOn"`
 	Cors                 *Cors                 `json:"cors,omitempty"`
 	SNI                  *SNIOption            `json:"sni,omitempty"`
 	IgnoreQueryString    *IgnoreQueryString    `json:"ignoreQueryString"`
