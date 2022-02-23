@@ -1,15 +1,15 @@
 package gcore
 
 type Options struct {
-	EdgeCacheSettings    *EdgeCacheSettings    `json:"edge_cache_settings,omitempty"`
-	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings,omitempty"`
-	HostHeader           *HostHeader           `json:"hostHeader,omitempty"`
-	Webp                 *Webp                 `json:"webp,omitempty"`
-	Rewrite              *Rewrite              `json:"rewrite,omitempty"`
-	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https,omitempty"`
+	EdgeCacheSettings    *EdgeCacheSettings    `json:"edge_cache_settings"`
+	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings"`
+	HostHeader           *HostHeader           `json:"hostHeader"`
+	Webp                 *Webp                 `json:"webp"`
+	Rewrite              *Rewrite              `json:"rewrite"`
+	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https"`
 	GzipOn               *GzipOn               `json:"gzipOn"`
-	Cors                 *Cors                 `json:"cors,omitempty"`
-	SNI                  *SNIOption            `json:"sni,omitempty"`
+	Cors                 *Cors                 `json:"cors"`
+	SNI                  *SNIOption            `json:"sni"`
 	IgnoreQueryString    *IgnoreQueryString    `json:"ignoreQueryString"`
 	QueryParamsWhitelist *QueryParamsWhitelist `json:"query_params_whitelist"`
 	QueryParamsBlacklist *QueryParamsBlacklist `json:"query_params_blacklist"`
