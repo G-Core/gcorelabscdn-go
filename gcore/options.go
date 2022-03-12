@@ -85,13 +85,13 @@ type QueryParamsBlacklist struct {
 }
 
 type StaticRequestHeaders struct {
-	Enabled bool     `json:"enabled"`
-	Value   []string `json:"value"`
+	Enabled bool              `json:"enabled"`
+	Value   map[string]string `json:"value"`
 }
 
 type StaticHeaders struct {
-	Enabled bool     `json:"enabled"`
-	Value   []string `json:"value"`
+	Enabled bool              `json:"enabled"`
+	Value   map[string]string `json:"value"`
 }
 
 type CacheHttpHeaders struct {
