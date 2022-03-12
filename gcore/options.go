@@ -13,6 +13,9 @@ type Options struct {
 	IgnoreQueryString    *IgnoreQueryString    `json:"ignoreQueryString"`
 	QueryParamsWhitelist *QueryParamsWhitelist `json:"query_params_whitelist"`
 	QueryParamsBlacklist *QueryParamsBlacklist `json:"query_params_blacklist"`
+	StaticRequestHeaders *StaticRequestHeaders `json:"staticRequestHeaders"`
+	StaticHeaders        *StaticHeaders        `json:"staticHeaders"`
+	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"`
 }
 
 type EdgeCacheSettings struct {
@@ -77,6 +80,21 @@ type QueryParamsWhitelist struct {
 }
 
 type QueryParamsBlacklist struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
+}
+
+type StaticRequestHeaders struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
+}
+
+type StaticHeaders struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
+}
+
+type CacheHttpHeaders struct {
 	Enabled bool     `json:"enabled"`
 	Value   []string `json:"value"`
 }
