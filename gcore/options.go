@@ -16,6 +16,7 @@ type Options struct {
 	StaticRequestHeaders *StaticRequestHeaders `json:"staticRequestHeaders"`
 	StaticHeaders        *StaticHeaders        `json:"staticHeaders"`
 	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"`
+	WebSockets           *WebSockets           `json:"websockets"`
 }
 
 type EdgeCacheSettings struct {
@@ -97,4 +98,9 @@ type StaticHeaders struct {
 type CacheHttpHeaders struct {
 	Enabled bool     `json:"enabled"`
 	Value   []string `json:"value"`
+}
+
+type WebSockets struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
 }
