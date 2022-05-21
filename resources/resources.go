@@ -11,6 +11,7 @@ type ResourceService interface {
 	Create(ctx context.Context, req *CreateRequest) (*Resource, error)
 	Get(ctx context.Context, id int64) (*Resource, error)
 	Update(ctx context.Context, id int64, req *UpdateRequest) (*Resource, error)
+	Delete(ctx context.Context, resourceID int64) error
 }
 
 type Protocol string
