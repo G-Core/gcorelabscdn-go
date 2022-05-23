@@ -37,6 +37,9 @@ type CreateRequest struct {
 	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
 	Origin             string         `json:"origin,omitempty"`
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
+	SSlEnabled         bool           `json:"sslEnabled"`
+	SSLData            int            `json:"sslData,omitempty"`
+	SSLAutomated       bool           `json:"ssl_automated"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
