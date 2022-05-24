@@ -40,7 +40,7 @@ type CreateRequest struct {
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
 	SSLAutomated       bool           `json:"ssl_automated"`
-	LEIssue            bool           `json:"le_issue,omitempty"`
+	IssueLECert        bool           `json:"le_issue,omitempty"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
