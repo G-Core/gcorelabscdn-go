@@ -18,6 +18,7 @@ type CreateRequest struct {
 	Rule                   string         `json:"rule,omitempty"`
 	RuleType               int            `json:"ruleType"`
 	OriginGroup            *int           `json:"originGroup"`
+	Weight                 int            `json:"weight"`
 	OverrideOriginProtocol *string        `json:"overrideOriginProtocol"`
 	Options                *gcore.Options `json:"options,omitempty"`
 }
@@ -26,6 +27,7 @@ type UpdateRequest struct {
 	Name                   string         `json:"name,omitempty"`
 	Rule                   string         `json:"rule,omitempty"`
 	RuleType               int            `json:"ruleType"`
+	Weight                 int            `json:"weight"`
 	OriginGroup            *int           `json:"originGroup"`
 	OverrideOriginProtocol *string        `json:"overrideOriginProtocol"`
 	Options                *gcore.Options `json:"options,omitempty"`
@@ -40,5 +42,6 @@ type Rule struct {
 	OverrideOriginProtocol *string        `json:"overrideOriginProtocol"`
 	Pattern                string         `json:"rule"`
 	Type                   int            `json:"ruleType"`
+	Weight                 int            `json:"weight"`
 	Options                *gcore.Options `json:"options,omitempty"`
 }
