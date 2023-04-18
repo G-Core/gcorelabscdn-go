@@ -7,6 +7,7 @@ type Options struct {
 	Webp                 *Webp                 `json:"webp"`
 	Rewrite              *Rewrite              `json:"rewrite"`
 	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https"`
+	RequestLimiter       *RequestLimiter       `json:"request_limiter"`
 	GzipOn               *GzipOn               `json:"gzipOn"`
 	Cors                 *Cors                 `json:"cors"`
 	SNI                  *SNIOption            `json:"sni"`
@@ -53,6 +54,14 @@ type Rewrite struct {
 type RedirectHttpToHttps struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
+}
+
+type RequestLimiter struct {
+	Enabled  bool   `json:"enabled"`
+	Rate     int    `json:"rate"`
+	Burst    int    `json:"burst"`
+	RateUnit string `json:"rate_unit"`
+	Delay    int    `json:"delay"`
 }
 
 type GzipOn struct {
