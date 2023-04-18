@@ -18,7 +18,7 @@ type Options struct {
 	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"`
 	WebSockets           *WebSockets           `json:"websockets"`
 	TLSVersions          *TLSVersions          `json:"tls_versions"`
-    UseRSALECert         *UseRSALECert         `json:"use_rsa_le_cert"`
+	UseRSALECert         *UseRSALECert         `json:"use_rsa_le_cert"`
 }
 
 type EdgeCacheSettings struct {
