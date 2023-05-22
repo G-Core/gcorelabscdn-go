@@ -20,6 +20,7 @@ type Options struct {
 	WebSockets           *WebSockets           `json:"websockets"`
 	TLSVersions          *TLSVersions          `json:"tls_versions"`
 	UseRSALECert         *UseRSALECert         `json:"use_rsa_le_cert"`
+	ForceReturn          *ForceReturn          `json:"force_return"`
 }
 
 type EdgeCacheSettings struct {
@@ -124,4 +125,10 @@ type TLSVersions struct {
 type UseRSALECert struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
+}
+
+type ForceReturn struct {
+	Enabled bool   `json:"enabled"`
+	Code    int    `json:"code"`
+	Body    string `json:"body"`
 }
