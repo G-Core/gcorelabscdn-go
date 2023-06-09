@@ -1,26 +1,42 @@
 package gcore
 
 type Options struct {
-	EdgeCacheSettings    *EdgeCacheSettings    `json:"edge_cache_settings"`
 	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings"`
+	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"` // deprecated in favor of response_headers_hiding_policy
+	Cors                 *Cors                 `json:"cors"`
+	EdgeCacheSettings    *EdgeCacheSettings    `json:"edge_cache_settings"`
+	ForceReturn          *ForceReturn          `json:"force_return"`
+	GzipOn               *GzipOn               `json:"gzipOn"`
 	HostHeader           *HostHeader           `json:"hostHeader"`
-	Webp                 *Webp                 `json:"webp"` // deprecated option
-	Rewrite              *Rewrite              `json:"rewrite"`
+	IgnoreQueryString    *IgnoreQueryString    `json:"ignoreQueryString"`
+	QueryParamsBlacklist *QueryParamsBlacklist `json:"query_params_blacklist"`
+	QueryParamsWhitelist *QueryParamsWhitelist `json:"query_params_whitelist"`
 	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https"`
 	RequestLimiter       *RequestLimiter       `json:"request_limiter"`
-	GzipOn               *GzipOn               `json:"gzipOn"`
-	Cors                 *Cors                 `json:"cors"`
+	Rewrite              *Rewrite              `json:"rewrite"`
 	SNI                  *SNIOption            `json:"sni"`
-	IgnoreQueryString    *IgnoreQueryString    `json:"ignoreQueryString"`
-	QueryParamsWhitelist *QueryParamsWhitelist `json:"query_params_whitelist"`
-	QueryParamsBlacklist *QueryParamsBlacklist `json:"query_params_blacklist"`
+	StaticHeaders        *StaticHeaders        `json:"staticHeaders"` // deprecated in favor of static_response_headers
 	StaticRequestHeaders *StaticRequestHeaders `json:"staticRequestHeaders"`
-	StaticHeaders        *StaticHeaders        `json:"staticHeaders"`      // deprecated in favor of static_response_headers
-	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"` // deprecated in favor of response_headers_hiding_policy
-	WebSockets           *WebSockets           `json:"websockets"`
 	TLSVersions          *TLSVersions          `json:"tls_versions"`
 	UseRSALECert         *UseRSALECert         `json:"use_rsa_le_cert"`
-	ForceReturn          *ForceReturn          `json:"force_return"`
+	Webp                 *Webp                 `json:"webp"` // deprecated option
+	WebSockets           *WebSockets           `json:"websockets"`
+}
+
+type BrowserCacheSettings struct {
+	Enabled bool   `json:"enabled"`
+	Value   string `json:"value"`
+}
+
+// deprecated in favor of response_headers_hiding_policy
+type CacheHttpHeaders struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
+}
+
+type Cors struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
 }
 
 type EdgeCacheSettings struct {
@@ -30,27 +46,35 @@ type EdgeCacheSettings struct {
 	Default      string            `json:"default"`
 }
 
+type ForceReturn struct {
+	Enabled bool   `json:"enabled"`
+	Code    int    `json:"code"`
+	Body    string `json:"body"`
+}
+
+type GzipOn struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
+}
+
 type HostHeader struct {
 	Enabled bool   `json:"enabled"`
 	Value   string `json:"value"`
 }
 
-type BrowserCacheSettings struct {
-	Enabled bool   `json:"enabled"`
-	Value   string `json:"value"`
+type IgnoreQueryString struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
 }
 
-type Webp struct {
-	Enabled     bool `json:"enabled"`
-	JPGQuality  int  `json:"jpg_quality"`
-	PNGQuality  int  `json:"png_quality"`
-	PNGLossless bool `json:"png_lossless"`
+type QueryParamsBlacklist struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
 }
 
-type Rewrite struct {
-	Enabled bool   `json:"enabled"`
-	Body    string `json:"body"`
-	Flag    string `json:"flag"`
+type QueryParamsWhitelist struct {
+	Enabled bool     `json:"enabled"`
+	Value   []string `json:"value"`
 }
 
 type RedirectHttpToHttps struct {
@@ -66,14 +90,10 @@ type RequestLimiter struct {
 	Delay    int    `json:"delay"`
 }
 
-type GzipOn struct {
-	Enabled bool `json:"enabled"`
-	Value   bool `json:"value"`
-}
-
-type Cors struct {
-	Enabled bool     `json:"enabled"`
-	Value   []string `json:"value"`
+type Rewrite struct {
+	Enabled bool   `json:"enabled"`
+	Body    string `json:"body"`
+	Flag    string `json:"flag"`
 }
 
 type SNIOption struct {
@@ -82,39 +102,15 @@ type SNIOption struct {
 	CustomHostname string `json:"custom_hostname"`
 }
 
-type IgnoreQueryString struct {
-	Enabled bool `json:"enabled"`
-	Value   bool `json:"value"`
-}
-
-type QueryParamsWhitelist struct {
-	Enabled bool     `json:"enabled"`
-	Value   []string `json:"value"`
-}
-
-type QueryParamsBlacklist struct {
-	Enabled bool     `json:"enabled"`
-	Value   []string `json:"value"`
-}
-
-type StaticRequestHeaders struct {
-	Enabled bool              `json:"enabled"`
-	Value   map[string]string `json:"value"`
-}
-
+// deprecated in favor of static_response_headers
 type StaticHeaders struct {
 	Enabled bool              `json:"enabled"`
 	Value   map[string]string `json:"value"`
 }
 
-type CacheHttpHeaders struct {
-	Enabled bool     `json:"enabled"`
-	Value   []string `json:"value"`
-}
-
-type WebSockets struct {
-	Enabled bool `json:"enabled"`
-	Value   bool `json:"value"`
+type StaticRequestHeaders struct {
+	Enabled bool              `json:"enabled"`
+	Value   map[string]string `json:"value"`
 }
 
 type TLSVersions struct {
@@ -127,8 +123,15 @@ type UseRSALECert struct {
 	Value   bool `json:"value"`
 }
 
-type ForceReturn struct {
-	Enabled bool   `json:"enabled"`
-	Code    int    `json:"code"`
-	Body    string `json:"body"`
+// deprecated option
+type Webp struct {
+	Enabled     bool `json:"enabled"`
+	JPGQuality  int  `json:"jpg_quality"`
+	PNGQuality  int  `json:"png_quality"`
+	PNGLossless bool `json:"png_lossless"`
+}
+
+type WebSockets struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
 }
