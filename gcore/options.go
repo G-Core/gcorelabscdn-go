@@ -4,7 +4,7 @@ type Options struct {
 	EdgeCacheSettings    *EdgeCacheSettings    `json:"edge_cache_settings"`
 	BrowserCacheSettings *BrowserCacheSettings `json:"browser_cache_settings"`
 	HostHeader           *HostHeader           `json:"hostHeader"`
-	Webp                 *Webp                 `json:"webp"`
+	Webp                 *Webp                 `json:"webp"` // deprecated option
 	Rewrite              *Rewrite              `json:"rewrite"`
 	RedirectHttpToHttps  *RedirectHttpToHttps  `json:"redirect_http_to_https"`
 	RequestLimiter       *RequestLimiter       `json:"request_limiter"`
@@ -15,8 +15,8 @@ type Options struct {
 	QueryParamsWhitelist *QueryParamsWhitelist `json:"query_params_whitelist"`
 	QueryParamsBlacklist *QueryParamsBlacklist `json:"query_params_blacklist"`
 	StaticRequestHeaders *StaticRequestHeaders `json:"staticRequestHeaders"`
-	StaticHeaders        *StaticHeaders        `json:"staticHeaders"`
-	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"`
+	StaticHeaders        *StaticHeaders        `json:"staticHeaders"`      // deprecated in favor of static_response_headers
+	CacheHttpHeaders     *CacheHttpHeaders     `json:"cache_http_headers"` // deprecated in favor of response_headers_hiding_policy
 	WebSockets           *WebSockets           `json:"websockets"`
 	TLSVersions          *TLSVersions          `json:"tls_versions"`
 	UseRSALECert         *UseRSALECert         `json:"use_rsa_le_cert"`
