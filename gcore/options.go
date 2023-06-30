@@ -70,6 +70,7 @@ type CacheHttpHeaders struct {
 type Cors struct {
 	Enabled bool     `json:"enabled"`
 	Value   []string `json:"value"`
+	Always  bool     `json:"always"`
 }
 
 type CountryACL struct {
