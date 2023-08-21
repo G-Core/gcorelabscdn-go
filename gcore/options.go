@@ -2,6 +2,7 @@ package gcore
 
 type Options struct {
 	AllowedHTTPMethods          *AllowedHTTPMethods          `json:"allowedHttpMethods"`
+	BotChallengeModule          *BotChallengeModule          `json:"bot_challenge_module"`
 	BrotliCompression           *BrotliCompression           `json:"brotli_compression"`
 	BrowserCacheSettings        *BrowserCacheSettings        `json:"browser_cache_settings"`
 	CacheHttpHeaders            *CacheHttpHeaders            `json:"cache_http_headers"` // deprecated in favor of response_headers_hiding_policy
@@ -49,6 +50,11 @@ type Options struct {
 type AllowedHTTPMethods struct {
 	Enabled bool     `json:"enabled"`
 	Value   []string `json:"value"`
+}
+
+type BotChallengeModule struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
 }
 
 type BrotliCompression struct {
