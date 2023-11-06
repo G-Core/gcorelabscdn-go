@@ -14,10 +14,10 @@ type OriginGroupService interface {
 type GroupRequest struct {
 	Name    string          `json:"name"`
 	UseNext bool            `json:"useNext"`
-	Origins []OriginRequest `json:"origins"`
+	Sources []SourceRequest `json:"sources"`
 }
 
-type OriginRequest struct {
+type SourceRequest struct {
 	Source  string `json:"source"`
 	Backup  bool   `json:"backup"`
 	Enabled bool   `json:"enabled"`
@@ -27,11 +27,10 @@ type OriginGroup struct {
 	ID      int64    `json:"id"`
 	Name    string   `json:"name"`
 	UseNext bool     `json:"useNext"`
-	Origins []Origin `json:"origin_ids"`
+	Sources []Source `json:"sources"`
 }
 
-type Origin struct {
-	ID      int64  `json:"id"`
+type Source struct {
 	Source  string `json:"source"`
 	Backup  bool   `json:"backup"`
 	Enabled bool   `json:"enabled"`
