@@ -49,7 +49,7 @@ type UpdateRequest struct {
 	Active             bool           `json:"active"`
 	OriginGroup        int            `json:"originGroup"`
 	OriginProtocol     Protocol       `json:"originProtocol,omitempty"`
-	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
+	SecondaryHostnames []string       `json:"secondaryHostnames"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
 	SSLAutomated       bool           `json:"ssl_automated"`
