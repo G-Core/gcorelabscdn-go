@@ -39,8 +39,6 @@ type CreateRequest struct {
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
-	SSLAutomated       bool           `json:"ssl_automated"`
-	IssueLECert        bool           `json:"le_issue,omitempty"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
@@ -52,7 +50,6 @@ type UpdateRequest struct {
 	SecondaryHostnames []string       `json:"secondaryHostnames"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
-	SSLAutomated       bool           `json:"ssl_automated"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
@@ -71,7 +68,6 @@ type Resource struct {
 	Shielded           bool           `json:"shielded"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData"`
-	SSLAutomated       bool           `json:"ssl_automated"`
 	OriginProtocol     Protocol       `json:"originProtocol"`
 	Options            *gcore.Options `json:"options"`
 }
