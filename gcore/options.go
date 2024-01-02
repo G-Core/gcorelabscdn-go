@@ -43,6 +43,7 @@ type Options struct {
 	UseDefaultLEChain           *UseDefaultLEChain           `json:"use_default_le_chain"`
 	UserAgentACL                *UserAgentACL                `json:"user_agent_acl"`
 	UseRSALECert                *UseRSALECert                `json:"use_rsa_le_cert"`
+	WAF                         *WAF                         `json:"waf"`
 	Webp                        *Webp                        `json:"webp"` // deprecated in favor of image_stack
 	WebSockets                  *WebSockets                  `json:"websockets"`
 }
@@ -281,6 +282,11 @@ type UserAgentACL struct {
 }
 
 type UseRSALECert struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
+}
+
+type WAF struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
 }
