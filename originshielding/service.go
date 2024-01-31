@@ -37,7 +37,7 @@ func (s *Service) Get(ctx context.Context, id int64) (*OriginShieldingData, erro
 
 func (s *Service) GetLocations(ctx context.Context) (*OriginShieldingLocations, error) {
 	var origin_shielding_locations OriginShieldingLocations
-	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/cdn/shieldingpop_v2"), nil, &origin_shielding_locations); err != nil {
+	if err := s.r.Request(ctx, http.MethodGet, "/cdn/shieldingpop_v2", nil, &origin_shielding_locations); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
 
