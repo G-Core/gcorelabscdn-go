@@ -3,6 +3,7 @@ package gcdn
 import (
 	"github.com/G-Core/gcorelabscdn-go/gcore"
 	"github.com/G-Core/gcorelabscdn-go/origingroups"
+	"github.com/G-Core/gcorelabscdn-go/originshielding"
 	"github.com/G-Core/gcorelabscdn-go/resources"
 	"github.com/G-Core/gcorelabscdn-go/rules"
 	"github.com/G-Core/gcorelabscdn-go/sslcerts"
@@ -18,20 +19,22 @@ type ClientService interface {
 var _ ClientService = (*Service)(nil)
 
 type Service struct {
-	r                   gcore.Requester
-	resourcesService    resources.ResourceService
-	rulesService        rules.RulesService
-	originGroupsService origingroups.OriginGroupService
-	sslCertsService     sslcerts.SSLCertService
+	r                      gcore.Requester
+	resourcesService       resources.ResourceService
+	rulesService           rules.RulesService
+	originGroupsService    origingroups.OriginGroupService
+	originShieldingService originshielding.OriginShieldingService
+	sslCertsService        sslcerts.SSLCertService
 }
 
 func NewService(r gcore.Requester) *Service {
 	return &Service{
-		r:                   r,
-		resourcesService:    resources.NewService(r),
-		rulesService:        rules.NewService(r),
-		originGroupsService: origingroups.NewService(r),
-		sslCertsService:     sslcerts.NewService(r),
+		r:                      r,
+		resourcesService:       resources.NewService(r),
+		rulesService:           rules.NewService(r),
+		originGroupsService:    origingroups.NewService(r),
+		originShieldingService: originshielding.NewService(r),
+		sslCertsService:        sslcerts.NewService(r),
 	}
 }
 
@@ -45,6 +48,10 @@ func (s *Service) Rules() rules.RulesService {
 
 func (s *Service) OriginGroups() origingroups.OriginGroupService {
 	return s.originGroupsService
+}
+
+func (s *Service) OriginShielding() originshielding.OriginShieldingService {
+	return s.originShieldingService
 }
 
 func (s *Service) SSLCerts() sslcerts.SSLCertService {
