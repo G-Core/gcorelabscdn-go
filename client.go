@@ -13,6 +13,7 @@ type ClientService interface {
 	Resources() resources.ResourceService
 	Rules() rules.RulesService
 	OriginGroups() origingroups.OriginGroupService
+	OriginShielding() originshielding.OriginShieldingService
 	SSLCerts() sslcerts.SSLCertService
 }
 
