@@ -18,28 +18,28 @@ func NewService(r gcore.Requester) *Service {
 }
 
 func (s *Service) Update(ctx context.Context, id int64, req *UpdateRequest) (*OriginShieldingData, error) {
-	var origin_shielding OriginShieldingData
-	if err := s.r.Request(ctx, http.MethodPut, fmt.Sprintf("/cdn/resources/%d/shielding_v2", id), req, &origin_shielding); err != nil {
+	var originShielding OriginShieldingData
+	if err := s.r.Request(ctx, http.MethodPut, fmt.Sprintf("/cdn/resources/%d/shielding_v2", id), req, &originShielding); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
-	return &origin_shielding, nil
+	return &originShielding, nil
 }
 
 func (s *Service) Get(ctx context.Context, id int64) (*OriginShieldingData, error) {
-	var origin_shielding OriginShieldingData
-	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/cdn/resources/%d/shielding_v2", id), nil, &origin_shielding); err != nil {
+	var originShielding OriginShieldingData
+	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/cdn/resources/%d/shielding_v2", id), nil, &originShielding); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
 
-	return &origin_shielding, nil
+	return &originShielding, nil
 
 }
 
-func (s *Service) GetLocations(ctx context.Context) (*OriginShieldingLocations, error) {
-	var origin_shielding_locations OriginShieldingLocations
-	if err := s.r.Request(ctx, http.MethodGet, "/cdn/shieldingpop_v2", nil, &origin_shielding_locations); err != nil {
+func (s *Service) GetLocations(ctx context.Context) ([]OriginShieldingLocations, error) {
+	var originShieldingLocations []OriginShieldingLocations
+	if err := s.r.Request(ctx, http.MethodGet, "/cdn/shieldingpop_v2", nil, originShieldingLocations); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
 
-	return &origin_shielding_locations, nil
+	return originShieldingLocations, nil
 }

@@ -7,7 +7,7 @@ import (
 type OriginShieldingService interface {
 	Update(ctx context.Context, id int64, req *UpdateRequest) (*OriginShieldingData, error)
 	Get(ctx context.Context, id int64) (*OriginShieldingData, error)
-	GetLocations(ctx context.Context) (*OriginShieldingLocations, error)
+	GetLocations(ctx context.Context) ([]OriginShieldingLocations, error)
 }
 
 type OriginShieldingData struct {
