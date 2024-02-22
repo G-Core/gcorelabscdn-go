@@ -44,7 +44,6 @@ type Options struct {
 	UserAgentACL                *UserAgentACL                `json:"user_agent_acl"`
 	UseRSALECert                *UseRSALECert                `json:"use_rsa_le_cert"`
 	WAF                         *WAF                         `json:"waf"`
-	Webp                        *Webp                        `json:"webp"` // deprecated in favor of image_stack
 	WebSockets                  *WebSockets                  `json:"websockets"`
 }
 
@@ -289,14 +288,6 @@ type UseRSALECert struct {
 type WAF struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
-}
-
-// deprecated in favor of ImageStack
-type Webp struct {
-	Enabled     bool `json:"enabled"`
-	JPGQuality  int  `json:"jpg_quality"`
-	PNGQuality  int  `json:"png_quality"`
-	PNGLossless bool `json:"png_lossless"`
 }
 
 type WebSockets struct {
