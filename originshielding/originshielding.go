@@ -11,11 +11,11 @@ type OriginShieldingService interface {
 }
 
 type OriginShieldingData struct {
-	ShieldingPop int `json:"shielding_pop"`
+	ShieldingPop *int `json:"shielding_pop"`
 }
 
 type UpdateRequest struct {
-	ShieldingPop int `json:"shielding_pop"`
+	ShieldingPop *int `json:"shielding_pop"`
 }
 
 type OriginShieldingLocations struct {
