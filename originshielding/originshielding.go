@@ -7,15 +7,15 @@ import (
 type OriginShieldingService interface {
 	Update(ctx context.Context, id int64, req *UpdateRequest) (*OriginShieldingData, error)
 	Get(ctx context.Context, id int64) (*OriginShieldingData, error)
-	GetLocations(ctx context.Context) ([]OriginShieldingLocations, error)
+	GetLocations(ctx context.Context) (*[]OriginShieldingLocations, error)
 }
 
 type OriginShieldingData struct {
-	ShieldingPop int `json:"shielding_pop"`
+	ShieldingPop *int `json:"shielding_pop"`
 }
 
 type UpdateRequest struct {
-	ShieldingPop int `json:"shielding_pop"`
+	ShieldingPop *int `json:"shielding_pop"`
 }
 
 type OriginShieldingLocations struct {
