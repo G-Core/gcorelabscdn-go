@@ -53,6 +53,17 @@ func (s *Service) Update(ctx context.Context, resourceID, ruleID int64, req *Upd
 
 func (s *Service) Delete(ctx context.Context, resourceID, ruleID int64) error {
 	path := fmt.Sprintf("/cdn/resources/%d/rules/%d", resourceID, ruleID)
+
+	var body ActivateRequest = ActivateRequest{
+		Active: false,
+	}
+	var rule Rule
+
+	// deactivate the rule instance before deletion
+	if err := s.r.Request(ctx, http.MethodPatch, path, &body, &rule); err != nil {
+		return fmt.Errorf("request: %w", err)
+	}
+
 	if err := s.r.Request(ctx, http.MethodDelete, path, nil, nil); err != nil {
 		return fmt.Errorf("request: %w", err)
 	}
