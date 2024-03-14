@@ -13,7 +13,7 @@ type OriginGroupService interface {
 
 type GroupRequest struct {
 	Name    string          `json:"name"`
-	UseNext bool            `json:"useNext"`
+	UseNext bool            `json:"use_next"`
 	Sources []SourceRequest `json:"sources"`
 }
 
@@ -26,7 +26,7 @@ type SourceRequest struct {
 type OriginGroup struct {
 	ID      int64    `json:"id"`
 	Name    string   `json:"name"`
-	UseNext bool     `json:"useNext"`
+	UseNext bool     `json:"use_next"`
 	Sources []Source `json:"sources"`
 }
 
