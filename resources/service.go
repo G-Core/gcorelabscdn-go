@@ -48,13 +48,13 @@ func (s *Service) Update(ctx context.Context, id int64, req *UpdateRequest) (*Re
 func (s *Service) Delete(ctx context.Context, resourceID int64) error {
 	path := fmt.Sprintf("/cdn/resources/%d", resourceID)
 
-	var deactivateRequestBody ActivateRequest = ActivateRequest{
+	var body ActivateRequest = ActivateRequest{
 		Active: false,
 	}
 	var resource Resource
 
 	// deactivate the resource instance before deletion
-	if err := s.r.Request(ctx, http.MethodPatch, path, &deactivateRequestBody, &resource); err != nil {
+	if err := s.r.Request(ctx, http.MethodPatch, path, &body, &resource); err != nil {
 		return fmt.Errorf("request: %w", err)
 	}
 
