@@ -53,6 +53,10 @@ type UpdateRequest struct {
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
+type ActivateRequest struct {
+	Active bool `json:"active"`
+}
+
 type Resource struct {
 	ID                 int64          `json:"id"`
 	Name               string         `json:"name"`
