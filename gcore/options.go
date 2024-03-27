@@ -24,6 +24,8 @@ type Options struct {
 	IPAddressACL                *IPAddressACL                `json:"ip_address_acl"`
 	LimitBandwidth              *LimitBandwidth              `json:"limit_bandwidth"`
 	ProxyCacheMethodsSet        *ProxyCacheMethodsSet        `json:"proxy_cache_methods_set"`
+	ProxyConnectTimeout         *ProxyConnectTimeout         `json:"proxy_connect_timeout"`
+	ProxyReadTimeout            *ProxyReadTimeout            `json:"proxy_read_timeout"`
 	QueryParamsBlacklist        *QueryParamsBlacklist        `json:"query_params_blacklist"`
 	QueryParamsWhitelist        *QueryParamsWhitelist        `json:"query_params_whitelist"`
 	RedirectHttpsToHttp         *RedirectHttpsToHttp         `json:"redirect_https_to_http"`
@@ -172,6 +174,16 @@ type LimitBandwidth struct {
 type ProxyCacheMethodsSet struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
+}
+
+type ProxyConnectTimeout struct {
+	Enabled bool   `json:"enabled"`
+	Value   string `json:"value"`
+}
+
+type ProxyReadTimeout struct {
+	Enabled bool   `json:"enabled"`
+	Value   string `json:"value"`
 }
 
 type QueryParamsBlacklist struct {
