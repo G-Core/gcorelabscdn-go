@@ -12,9 +12,10 @@ type OriginGroupService interface {
 }
 
 type GroupRequest struct {
-	Name    string          `json:"name"`
-	UseNext bool            `json:"use_next"`
-	Sources []SourceRequest `json:"sources"`
+	Name              string          `json:"name"`
+	UseNext           bool            `json:"use_next"`
+	Sources           []SourceRequest `json:"sources"`
+	ProxyNextUpstream []string        `json:"proxy_next_upstream"`
 }
 
 type SourceRequest struct {
