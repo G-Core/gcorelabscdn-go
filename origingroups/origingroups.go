@@ -24,10 +24,11 @@ type SourceRequest struct {
 }
 
 type OriginGroup struct {
-	ID      int64    `json:"id"`
-	Name    string   `json:"name"`
-	UseNext bool     `json:"use_next"`
-	Sources []Source `json:"sources"`
+	ID                int64    `json:"id"`
+	Name              string   `json:"name"`
+	UseNext           bool     `json:"use_next"`
+	Sources           []Source `json:"sources"`
+	ProxyNextUpstream []string `json:"proxy_next_upstream"`
 }
 
 type Source struct {
