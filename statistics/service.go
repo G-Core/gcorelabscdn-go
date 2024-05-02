@@ -1,4 +1,4 @@
-// Declare the API service for the statistics endpoint
+// Declare the API service for the statistics endpoint https://api.gcore.com/docs/cdn#tag/Statistics
 package statistics
 
 import (
@@ -45,8 +45,8 @@ func (s *Service) GetOriginShieldingUsageStatistics(ctx context.Context, req *Ge
 
 }
 
-func (s *Service) GetAggregatedOriginShieldingUsageStatistics(ctx context.Context, req *GetAggregatedOriginShieldingUsageStatisticsRequest) (*CDNResource, error) {
-	var cdnresource AggregatedOriginShieldingUsage
+func (s *Service) GetAggregatedOriginShieldingUsageStatistics(ctx context.Context, req *GetAggregatedOriginShieldingUsageStatisticsRequest) (*AggregatedOriginShieldingUsage, error) {
+	var aggregatedoriginshieldingusage AggregatedOriginShieldingUsage
 	if err := s.r.Request(ctx, http.MethodGet, "/cdn/statistics/shield_usage/aggregated", nil, &aggregatedoriginshieldingusage); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
