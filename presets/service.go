@@ -18,9 +18,9 @@ func NewService(r gcore.Requester) *Service {
 	return &Service{r: r}
 }
 
-func (s *Service) Create(ctx context.Context, presetID int64, req *CreateRequest) (*Preset, error) {
-	preset := Preset{
-		ID:       int(presetID),
+func (s *Service) Apply(ctx context.Context, presetID int64, req *ApplyRequest) (*AppliedPreset, error) {
+	preset := AppliedPreset{
+		PresetID: int(presetID),
 		ObjectID: req.ObjectID,
 	}
 
@@ -32,10 +32,10 @@ func (s *Service) Create(ctx context.Context, presetID int64, req *CreateRequest
 	return &preset, nil
 }
 
-func (s *Service) Get(ctx context.Context, presetID, objectID int64) (*Preset, error) {
-	var response GetResponse
-	preset := Preset{
-		ID:       int(presetID),
+func (s *Service) GetAppliedPreset(ctx context.Context, presetID, objectID int64) (*AppliedPreset, error) {
+	var response GetAppliedPresetResponse
+	preset := AppliedPreset{
+		PresetID: int(presetID),
 		ObjectID: int(objectID),
 	}
 
@@ -54,7 +54,7 @@ func (s *Service) Get(ctx context.Context, presetID, objectID int64) (*Preset, e
 	return nil, fmt.Errorf("error: preset with id %d is not applied to the object with id %d", presetID, objectID)
 }
 
-func (s *Service) Delete(ctx context.Context, presetID, objectID int64) error {
+func (s *Service) Unapply(ctx context.Context, presetID, objectID int64) error {
 	path := fmt.Sprintf("/cdn/presets/%d/applied/%d", presetID, objectID)
 
 	if err := s.r.Request(ctx, http.MethodDelete, path, nil, nil); err != nil {

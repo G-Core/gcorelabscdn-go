@@ -5,21 +5,21 @@ import (
 )
 
 type PresetsService interface {
-	Create(ctx context.Context, presetID int64, req *CreateRequest) (*Preset, error)
-	Get(ctx context.Context, presetID, objectID int64) (*Preset, error)
-	Delete(ctx context.Context, presetID, objectID int64) error
+	Apply(ctx context.Context, presetID int64, req *ApplyRequest) (*AppliedPreset, error)
+	GetAppliedPreset(ctx context.Context, presetID, objectID int64) (*AppliedPreset, error)
+	Unapply(ctx context.Context, presetID, objectID int64) error
 }
 
-type CreateRequest struct {
+type ApplyRequest struct {
 	ObjectID int `json:"object_id"`
 }
 
-type GetResponse struct {
+type GetAppliedPresetResponse struct {
 	ObjectType *string `json:"object_type"`
 	ObjectIDs  []int   `json:"object_ids"`
 }
 
-type Preset struct {
-	ID       int
+type AppliedPreset struct {
+	PresetID int
 	ObjectID int
 }
