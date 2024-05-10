@@ -63,3 +63,14 @@ func (s *Service) Unapply(ctx context.Context, presetID, objectID int) error {
 
 	return nil
 }
+
+func (s *Service) Get(ctx context.Context, presetID int) (*Preset, error) {
+	path := fmt.Sprintf("/cdn/presets/%d", presetID)
+	var preset Preset
+
+	if err := s.r.Request(ctx, http.MethodGet, path, nil, &preset); err != nil {
+		return nil, fmt.Errorf("unable to retrieve preset with id=%d. Make sure the ID provided is correct. Details: %w", presetID, err)
+	}
+
+	return &preset, nil
+}
