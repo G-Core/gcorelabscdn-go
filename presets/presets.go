@@ -5,9 +5,9 @@ import (
 )
 
 type PresetsService interface {
-	Apply(ctx context.Context, presetID int64, req *ApplyRequest) (*AppliedPreset, error)
-	GetAppliedPreset(ctx context.Context, presetID, objectID int64) (*AppliedPreset, error)
-	Unapply(ctx context.Context, presetID, objectID int64) error
+	Apply(ctx context.Context, presetID int, req *ApplyRequest) (*AppliedPreset, error)
+	GetAppliedPreset(ctx context.Context, presetID, objectID int) (*AppliedPreset, error)
+	Unapply(ctx context.Context, presetID, objectID int) error
 }
 
 type ApplyRequest struct {
