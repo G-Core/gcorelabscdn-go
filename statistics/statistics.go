@@ -88,17 +88,19 @@ type CreateCDNMetricsRequest struct {
 // Main responses schemas
 
 type CDNResource struct {
-	Resource Num `json:"resource"`
-	Num      struct {
-		Region Region `json:"region"`
-	}
+	Resource struct {
+		Num struct {
+			Region Region `json:"region"`
+		}
+	} `json:"resource"`
 }
 
 type AggregatedResource struct {
-	Resource Num `json:"resource"`
-	Num      struct {
-		Region AggregatedRegion `json:"region"`
-	}
+	Resource struct {
+		Num struct {
+			Region AggregatedRegion `json:"region"`
+		}
+	} `json:"resource"`
 }
 
 type OriginShieldingUsage struct {
