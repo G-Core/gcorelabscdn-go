@@ -8,6 +8,7 @@ import (
 	"github.com/G-Core/gcorelabscdn-go/resources"
 	"github.com/G-Core/gcorelabscdn-go/rules"
 	"github.com/G-Core/gcorelabscdn-go/sslcerts"
+	"github.com/G-Core/gcorelabscdn-go/statistics"
 )
 
 type ClientService interface {
@@ -29,6 +30,7 @@ type Service struct {
 	originShieldingService originshielding.OriginShieldingService
 	sslCertsService        sslcerts.SSLCertService
 	presetsService         presets.PresetsService
+	statisticsService      statistics.StatisticsService
 }
 
 func NewService(r gcore.Requester) *Service {
@@ -40,6 +42,7 @@ func NewService(r gcore.Requester) *Service {
 		originShieldingService: originshielding.NewService(r),
 		sslCertsService:        sslcerts.NewService(r),
 		presetsService:         presets.NewService(r),
+		statisticsService:      statistics.NewService(r),
 	}
 }
 
@@ -65,4 +68,8 @@ func (s *Service) SSLCerts() sslcerts.SSLCertService {
 
 func (s *Service) Presets() presets.PresetsService {
 	return s.presetsService
+}
+
+func (s *Service) Statistics() statistics.StatisticsService {
+	return s.statisticsService
 }

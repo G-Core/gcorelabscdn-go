@@ -15,6 +15,10 @@ type Service struct {
 	r gcore.Requester
 }
 
+func NewService(r gcore.Requester) *Service {
+	return &Service{r: r}
+}
+
 func (s *Service) GetCDNResourceStatistics(ctx context.Context, req *GetCDNResourceStatisticsRequest) (*CDNResource, error) {
 	var cdnresource CDNResource
 	if err := s.r.Request(ctx, http.MethodGet, "/cdn/statistics/series", nil, &cdnresource); err != nil {
@@ -22,7 +26,6 @@ func (s *Service) GetCDNResourceStatistics(ctx context.Context, req *GetCDNResou
 	}
 
 	return &cdnresource, nil
-
 }
 
 func (s *Service) GetAggregatedStatistics(ctx context.Context, req *GetAggregatedStatisticsRequest) (*AggregatedResource, error) {
@@ -32,7 +35,6 @@ func (s *Service) GetAggregatedStatistics(ctx context.Context, req *GetAggregate
 	}
 
 	return &aggregatedresource, nil
-
 }
 
 func (s *Service) GetOriginShieldingUsageStatistics(ctx context.Context, req *GetOriginShieldingUsageStatisticsRequest) (*OriginShieldingUsage, error) {
@@ -42,7 +44,6 @@ func (s *Service) GetOriginShieldingUsageStatistics(ctx context.Context, req *Ge
 	}
 
 	return &originshieldingusage, nil
-
 }
 
 func (s *Service) GetAggregatedOriginShieldingUsageStatistics(ctx context.Context, req *GetAggregatedOriginShieldingUsageStatisticsRequest) (*AggregatedOriginShieldingUsage, error) {
@@ -52,7 +53,6 @@ func (s *Service) GetAggregatedOriginShieldingUsageStatistics(ctx context.Contex
 	}
 
 	return &aggregatedoriginshieldingusage, nil
-
 }
 
 func (s *Service) GetRawLogsUsageStatistics(ctx context.Context, req *GetRawLogsUsageStatisticsRequest) (*OriginShieldingUsage, error) {
@@ -62,7 +62,6 @@ func (s *Service) GetRawLogsUsageStatistics(ctx context.Context, req *GetRawLogs
 	}
 
 	return &originshieldingusage, nil
-
 }
 
 func (s *Service) GetAggregatedRawLogsUsageStatistics(ctx context.Context, req *GetAggregatedRawLogsUsageStatisticsRequest) (*AggregatedRowLogUsage, error) {
@@ -72,7 +71,6 @@ func (s *Service) GetAggregatedRawLogsUsageStatistics(ctx context.Context, req *
 	}
 
 	return &aggregatedrowlogusage, nil
-
 }
 
 func (s *Service) GetNetworkCapacity(ctx context.Context) (*NetworkCapacity, error) {
@@ -82,7 +80,6 @@ func (s *Service) GetNetworkCapacity(ctx context.Context) (*NetworkCapacity, err
 	}
 
 	return &networkcapacity, nil
-
 }
 
 func (s *Service) CreateCDNMetrics(ctx context.Context, req *CreateCDNMetricsRequest) (*CDNMetricsData, error) {
@@ -92,5 +89,4 @@ func (s *Service) CreateCDNMetrics(ctx context.Context, req *CreateCDNMetricsReq
 	}
 
 	return &cdnmetricsdata, nil
-
 }
