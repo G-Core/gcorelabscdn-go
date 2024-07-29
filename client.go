@@ -18,6 +18,7 @@ type ClientService interface {
 	OriginShielding() originshielding.OriginShieldingService
 	SSLCerts() sslcerts.SSLCertService
 	Presets() presets.PresetsService
+	Statistics() statistics.StatisticsService
 }
 
 var _ ClientService = (*Service)(nil)

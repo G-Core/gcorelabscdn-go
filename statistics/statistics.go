@@ -121,14 +121,12 @@ type AggregatedOriginShieldingUsage struct { // nested response object
 }
 
 type AggregatedRowLogUsage struct { // nested response object
-	Resource struct {
-		Num1 struct {
-			Metrics MetricsRowLogUsage `json:"metrics"`
-		} `json:"1"`
-	} `json:"resource"`
+	Metrics struct {
+		RawLogsUsage int `json:"raw_logs_usage"`
+	} `json:"metrics"`
 }
 
-type NetworkCapacity struct {
+type NetworkCapacity []struct {
 	CountryCode string  `json:"country_code"`
 	Country     string  `json:"country"`
 	Capacity    float64 `json:"capacity"`
@@ -173,5 +171,5 @@ type MetricsShieldUsage struct {
 }
 
 type MetricsRowLogUsage struct {
-	RowLogUsage int `json:"row_log_usage"`
+	RawLogUsage int `json:"raw_log_usage"`
 }
