@@ -8,14 +8,13 @@ import (
 )
 
 type StatisticsService interface {
-	GetCDNResourceStatistics(ctx context.Context, req *GetCDNResourceStatisticsRequest) (*CDNResource, error)
 	GetAggregatedStatistics(ctx context.Context, req *GetAggregatedStatisticsRequest) (*AggregatedResource, error)
 	GetOriginShieldingUsageStatistics(ctx context.Context, req *GetOriginShieldingUsageStatisticsRequest) (*OriginShieldingUsage, error)
 	GetAggregatedOriginShieldingUsageStatistics(ctx context.Context, req *GetAggregatedOriginShieldingUsageStatisticsRequest) (*AggregatedOriginShieldingUsage, error)
 	GetRawLogsUsageStatistics(ctx context.Context, req *GetRawLogsUsageStatisticsRequest) (*OriginShieldingUsage, error)
 	GetAggregatedRawLogsUsageStatistics(ctx context.Context, req *GetAggregatedRawLogsUsageStatisticsRequest) (*AggregatedRowLogUsage, error)
 	GetNetworkCapacity(ctx context.Context) (*NetworkCapacity, error)
-	CreateCDNMetrics(ctx context.Context, req *CreateCDNMetricsRequest) (*CDNMetricsData, error)
+	GetCDNResourceStatistics(ctx context.Context, req *GetCDNMetricsRequest) (string, error)
 }
 
 type GetCDNResourceStatisticsRequest struct {
@@ -76,13 +75,13 @@ type FilterGroup struct {
 	Value []string `json:"value"` // array of string or int
 }
 
-type CreateCDNMetricsRequest struct {
-	Metrics     []string      `json:"metrics"`
-	From        string        `json:"from"`
-	To          string        `json:"to"`
-	GroupBy     []string      `json:"group_by"`
-	Granularity string        `json:"granularity"`
-	FilterBy    []FilterGroup `json:"filter_by"`
+type GetCDNMetricsRequest struct {
+	ApiKey      string   `json:"-"`
+	From        string   `json:"from"` // ISO 8601/RFC 3339 format, UTC.
+	To          string   `json:"to"`   // ISO 8601/RFC 3339 format, UTC.
+	Granularity string   `json:"granularity"`
+	Metrics     []string `json:"metrics"`
+	GroupBy     []string `json:"group_by"`
 }
 
 // Main responses schemas
