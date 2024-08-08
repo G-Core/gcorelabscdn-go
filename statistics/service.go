@@ -4,7 +4,9 @@ package statistics
 import (
 	"context"
 	"fmt"
+	"io"
 	"net/http"
+	"time"
 
 	"github.com/G-Core/gcorelabscdn-go/gcore"
 )
@@ -17,15 +19,6 @@ type Service struct {
 
 func NewService(r gcore.Requester) *Service {
 	return &Service{r: r}
-}
-
-func (s *Service) GetCDNResourceStatistics(ctx context.Context, req *GetCDNResourceStatisticsRequest) (*CDNResource, error) {
-	var cdnresource CDNResource
-	if err := s.r.Request(ctx, http.MethodGet, "/cdn/statistics/series", nil, &cdnresource); err != nil {
-		return nil, fmt.Errorf("request: %w", err)
-	}
-
-	return &cdnresource, nil
 }
 
 func (s *Service) GetAggregatedStatistics(ctx context.Context, req *GetAggregatedStatisticsRequest) (*AggregatedResource, error) {
@@ -82,11 +75,65 @@ func (s *Service) GetNetworkCapacity(ctx context.Context) (*NetworkCapacity, err
 	return &networkcapacity, nil
 }
 
-func (s *Service) CreateCDNMetrics(ctx context.Context, req *CreateCDNMetricsRequest) (*CDNMetricsData, error) {
-	var cdnmetricsdata CDNMetricsData
-	if err := s.r.Request(ctx, http.MethodGet, "/cdn/statistics/series", nil, &cdnmetricsdata); err != nil {
-		return nil, fmt.Errorf("request: %w", err)
+func (s *Service) GetCDNResourceStatistics(ctx context.Context, req *GetCDNMetricsRequest) (string, error) {
+	request, err := buildRequest(ctx, req)
+	if err != nil {
+		return "", err
 	}
 
-	return &cdnmetricsdata, nil
+	// Perform request.
+	client := http.Client{Timeout: time.Minute}
+	res, err := client.Do(request)
+	if err != nil {
+		return "", err
+	}
+
+	body, err := readBodyAndCheckStatus(res)
+	if err != nil {
+		return "", err
+	}
+
+	return string(body), nil
+}
+
+// buildRequest creates a *http.Request for the GetCDNMetrics endpoint, adds all query parameters and headers and returns it.
+func buildRequest(ctx context.Context, req *GetCDNMetricsRequest) (*http.Request, error) {
+	request, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://api.gcore.com/cdn/statistics/series", http.NoBody)
+	if err != nil {
+		return nil, err
+	}
+
+	q := request.URL.Query()
+	q.Add("service", "CDN")
+	q.Add("from", req.From)
+	q.Add("to", req.To)
+	q.Add("granularity", req.Granularity)
+
+	for _, metric := range req.Metrics {
+		q.Add("metrics", metric)
+	}
+
+	for _, group := range req.GroupBy {
+		q.Add("group_by", group)
+	}
+	request.URL.RawQuery = q.Encode()
+
+	request.Header.Add("Authorization", fmt.Sprintf("APIKey %s", req.ApiKey))
+	request.Header.Add("Content-Type", "application/json")
+
+	return request, nil
+}
+
+func readBodyAndCheckStatus(res *http.Response) ([]byte, error) {
+	defer res.Body.Close()
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("unable to fetch data from Gcore: %s. status code: %d", string(body), res.StatusCode)
+	}
+
+	return body, nil
 }
