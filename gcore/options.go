@@ -11,6 +11,7 @@ type Options struct {
 	DisableCache                *DisableCache                `json:"disable_cache"`
 	DisableProxyForceRanges     *DisableProxyForceRanges     `json:"disable_proxy_force_ranges"`
 	EdgeCacheSettings           *EdgeCacheSettings           `json:"edge_cache_settings"`
+	FastEdge                    *FastEdge                    `json:"fastedge"`
 	FetchCompressed             *FetchCompressed             `json:"fetch_compressed"`
 	FollowOriginRedirect        *FollowOriginRedirect        `json:"follow_origin_redirect"`
 	ForceReturn                 *ForceReturn                 `json:"force_return"`
@@ -102,6 +103,17 @@ type EdgeCacheSettings struct {
 	Value        string            `json:"value"`
 	CustomValues map[string]string `json:"custom_values"`
 	Default      string            `json:"default"`
+}
+
+type FastEdgeAppConfig struct {
+	Enabled           bool   `json:"enabled"`
+	AppID             string `json:"app_id"`
+	InterruptOnError  bool   `json:"interrupt_on_error"`
+}
+
+type FastEdge struct {
+	Enabled            bool               `json:"enabled"`
+	OnRequestHeaders   *FastEdgeAppConfig `json:"on_request_headers"`
 }
 
 type FetchCompressed struct {
