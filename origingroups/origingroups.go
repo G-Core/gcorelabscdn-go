@@ -13,8 +13,10 @@ type OriginGroupService interface {
 
 type GroupRequest struct {
 	Name              string          `json:"name"`
-	UseNext           bool            `json:"use_next"`
-	Sources           []SourceRequest `json:"sources"`
+	AuthType          string          `json:"auth_type,omitempty"`
+	UseNext           bool            `json:"use_next,omitempty"`
+	Sources           []SourceRequest `json:"sources,omitempty"`
+	Auth              *AuthS3         `json:"auth,omitempty"`
 	ProxyNextUpstream []string        `json:"proxy_next_upstream"`
 }
 
@@ -27,8 +29,10 @@ type SourceRequest struct {
 type OriginGroup struct {
 	ID                int64    `json:"id"`
 	Name              string   `json:"name"`
-	UseNext           bool     `json:"use_next"`
-	Sources           []Source `json:"sources"`
+	AuthType          string   `json:"auth_type,omitempty"`
+	UseNext           bool     `json:"use_next,omitempty"`
+	Sources           []Source `json:"sources,omitempty"`
+	Auth              *AuthS3  `json:"auth,omitempty"`
 	ProxyNextUpstream []string `json:"proxy_next_upstream"`
 }
 
@@ -36,4 +40,13 @@ type Source struct {
 	Source  string `json:"source"`
 	Backup  bool   `json:"backup"`
 	Enabled bool   `json:"enabled"`
+}
+
+type AuthS3 struct {
+	S3Type            string `json:"s3_type"`
+	S3AccessKeyID     string `json:"s3_access_key_id"`
+	S3SecretAccessKey string `json:"s3_secret_access_key"`
+	S3BucketName      string `json:"s3_bucket_name"`
+	S3StorageHostname string `json:"s3_storage_hostname,omitempty"`
+	S3Region          string `json:"s3_region,omitempty"`
 }
