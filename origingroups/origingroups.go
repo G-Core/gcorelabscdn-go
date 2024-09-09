@@ -14,7 +14,7 @@ type OriginGroupService interface {
 type GroupRequest struct {
 	Name              string          `json:"name"`
 	AuthType          string          `json:"auth_type,omitempty"`
-	UseNext           bool            `json:"use_next,omitempty"`
+	UseNext           bool            `json:"use_next"`
 	Sources           []SourceRequest `json:"sources,omitempty"`
 	Auth              *AuthS3         `json:"auth,omitempty"`
 	ProxyNextUpstream []string        `json:"proxy_next_upstream"`
@@ -30,7 +30,7 @@ type OriginGroup struct {
 	ID                int64    `json:"id"`
 	Name              string   `json:"name"`
 	AuthType          string   `json:"auth_type,omitempty"`
-	UseNext           bool     `json:"use_next,omitempty"`
+	UseNext           bool     `json:"use_next"`
 	Sources           []Source `json:"sources,omitempty"`
 	Auth              *AuthS3  `json:"auth,omitempty"`
 	ProxyNextUpstream []string `json:"proxy_next_upstream"`
