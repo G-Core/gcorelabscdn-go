@@ -24,6 +24,7 @@ type Options struct {
 	ImageStack                  *ImageStack                  `json:"image_stack"`
 	IPAddressACL                *IPAddressACL                `json:"ip_address_acl"`
 	LimitBandwidth              *LimitBandwidth              `json:"limit_bandwidth"`
+	ProxyCacheKey               *ProxyCacheKey               `json:"proxy_cache_key"`
 	ProxyCacheMethodsSet        *ProxyCacheMethodsSet        `json:"proxy_cache_methods_set"`
 	ProxyConnectTimeout         *ProxyConnectTimeout         `json:"proxy_connect_timeout"`
 	ProxyReadTimeout            *ProxyReadTimeout            `json:"proxy_read_timeout"`
@@ -106,14 +107,14 @@ type EdgeCacheSettings struct {
 }
 
 type FastEdgeAppConfig struct {
-	Enabled           bool   `json:"enabled"`
-	AppID             string `json:"app_id"`
-	InterruptOnError  bool   `json:"interrupt_on_error"`
+	Enabled          bool   `json:"enabled"`
+	AppID            string `json:"app_id"`
+	InterruptOnError bool   `json:"interrupt_on_error"`
 }
 
 type FastEdge struct {
-	Enabled            bool               `json:"enabled"`
-	OnRequestHeaders   *FastEdgeAppConfig `json:"on_request_headers"`
+	Enabled          bool               `json:"enabled"`
+	OnRequestHeaders *FastEdgeAppConfig `json:"on_request_headers"`
 }
 
 type FetchCompressed struct {
@@ -181,6 +182,11 @@ type LimitBandwidth struct {
 	LimitType string `json:"limit_type"`
 	Speed     int    `json:"speed"`
 	Buffer    int    `json:"buffer"`
+}
+
+type ProxyCacheKey struct {
+	Enabled bool   `json:"enabled"`
+	Value   string `json:"value"`
 }
 
 type ProxyCacheMethodsSet struct {
