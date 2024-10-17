@@ -2,12 +2,14 @@ package gcdn
 
 import (
 	"github.com/G-Core/gcorelabscdn-go/gcore"
+	"github.com/G-Core/gcorelabscdn-go/invalidations"
 	"github.com/G-Core/gcorelabscdn-go/origingroups"
 	"github.com/G-Core/gcorelabscdn-go/originshielding"
 	"github.com/G-Core/gcorelabscdn-go/presets"
 	"github.com/G-Core/gcorelabscdn-go/resources"
 	"github.com/G-Core/gcorelabscdn-go/rules"
 	"github.com/G-Core/gcorelabscdn-go/sslcerts"
+	"github.com/G-Core/gcorelabscdn-go/statistics"
 )
 
 type ClientService interface {
@@ -17,6 +19,8 @@ type ClientService interface {
 	OriginShielding() originshielding.OriginShieldingService
 	SSLCerts() sslcerts.SSLCertService
 	Presets() presets.PresetsService
+	Statistics() statistics.StatisticsService
+	Invalidations() invalidations.InvalidationsService
 }
 
 var _ ClientService = (*Service)(nil)
@@ -29,6 +33,8 @@ type Service struct {
 	originShieldingService originshielding.OriginShieldingService
 	sslCertsService        sslcerts.SSLCertService
 	presetsService         presets.PresetsService
+	statisticsService      statistics.StatisticsService
+	invalidationsService   invalidations.InvalidationsService
 }
 
 func NewService(r gcore.Requester) *Service {
@@ -40,6 +46,8 @@ func NewService(r gcore.Requester) *Service {
 		originShieldingService: originshielding.NewService(r),
 		sslCertsService:        sslcerts.NewService(r),
 		presetsService:         presets.NewService(r),
+		statisticsService:      statistics.NewService(r),
+		invalidationsService:   invalidations.NewService(r),
 	}
 }
 
@@ -65,4 +73,12 @@ func (s *Service) SSLCerts() sslcerts.SSLCertService {
 
 func (s *Service) Presets() presets.PresetsService {
 	return s.presetsService
+}
+
+func (s *Service) Statistics() statistics.StatisticsService {
+	return s.statisticsService
+}
+
+func (s *Service) Invalidations() invalidations.InvalidationsService {
+	return s.invalidationsService
 }
