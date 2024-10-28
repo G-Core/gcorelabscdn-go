@@ -3,8 +3,9 @@ package gcore
 import "encoding/json"
 
 type ErrorResponse struct {
-	Errors  *json.RawMessage
-	Message string
+	StatusCode int
+	Errors     *json.RawMessage
+	Message    string
 }
 
 func (resp *ErrorResponse) Error() string {

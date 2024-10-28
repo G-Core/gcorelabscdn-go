@@ -54,6 +54,7 @@ func (c *Client) Request(ctx context.Context, method, path string, payload inter
 
 	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusBadRequest {
 		var errResp gcore.ErrorResponse
+		errResp.StatusCode = resp.StatusCode
 		if err := json.NewDecoder(resp.Body).Decode(&errResp); err != nil {
 			return fmt.Errorf("decode err resp %d: %w", resp.StatusCode, err)
 		}
