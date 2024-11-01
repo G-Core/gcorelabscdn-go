@@ -151,6 +151,7 @@ type Region struct {
 	Latam Metrics `json:"latam"`
 	Me    Metrics `json:"me"`
 	Na    Metrics `json:"na"`
+	Au    Metrics `json:"au"`
 }
 
 type AggregatedRegion struct {
@@ -159,10 +160,17 @@ type AggregatedRegion struct {
 }
 
 type Metrics struct {
-	SentBytes      [][]int `json:"sent_bytes"`
-	TotalBytes     [][]int `json:"total_bytes"`
-	BackblazeBytes [][]int `json:"backblaze_bytes"`
-	UpstreamBytes  [][]int `json:"upstream_bytes"`
+	SentBytes      [][]int64 `json:"sent_bytes"`
+	TotalBytes     [][]int64 `json:"total_bytes"`
+	BackblazeBytes [][]int64 `json:"backblaze_bytes"`
+	UpstreamBytes  [][]int64 `json:"upstream_bytes"`
+	Requests       [][]int64 `json:"requests"`
+	ResponsesHit   [][]int64 `json:"responses_hit"`
+	ResponsesMiss  [][]int64 `json:"responses_miss"`
+	Responses2XX   [][]int64 `json:"responses_2xx"`
+	Responses3XX   [][]int64 `json:"responses_3xx"`
+	Responses4XX   [][]int64 `json:"responses_4xx"`
+	Responses5XX   [][]int64 `json:"responses_5xx"`
 }
 
 type MetricsShieldUsage struct {
