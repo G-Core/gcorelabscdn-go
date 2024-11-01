@@ -27,6 +27,15 @@ func (s *Service) Create(ctx context.Context, req *CreateRequest) (*Resource, er
 	return &resource, nil
 }
 
+func (s *Service) List(ctx context.Context) ([]Resource, error) {
+	var resources []Resource
+	if err := s.r.Request(ctx, http.MethodGet, "/cdn/resources", nil, &resources); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return resources, nil
+}
+
 func (s *Service) Get(ctx context.Context, id int64) (*Resource, error) {
 	var resource Resource
 	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/cdn/resources/%d", id), nil, &resource); err != nil {
