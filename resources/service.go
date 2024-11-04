@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 
 	"github.com/G-Core/gcorelabscdn-go/gcore"
 )
@@ -27,9 +28,22 @@ func (s *Service) Create(ctx context.Context, req *CreateRequest) (*Resource, er
 	return &resource, nil
 }
 
-func (s *Service) List(ctx context.Context) ([]Resource, error) {
+func (s *Service) List(ctx context.Context, limit, offset int) ([]Resource, error) {
 	var resources []Resource
-	if err := s.r.Request(ctx, http.MethodGet, "/cdn/resources", nil, &resources); err != nil {
+	params := url.Values{}
+	if limit > 0 {
+		params.Add("limit", fmt.Sprintf("%d", limit))
+	}
+	if offset > 0 {
+		params.Add("offset", fmt.Sprintf("%d", offset))
+	}
+
+	path := "/cdn/resources"
+	if len(params) > 0 {
+		path = fmt.Sprintf("%s?%s", path, params.Encode())
+	}
+
+	if err := s.r.Request(ctx, http.MethodGet, path, nil, &resources); err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
 
