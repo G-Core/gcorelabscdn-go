@@ -35,6 +35,15 @@ func (s *Service) Get(ctx context.Context, id int64) (*Cert, error) {
 	return &cert, nil
 }
 
+func (s *Service) Update(ctx context.Context, id int64, req *UpdateRequest) (*Cert, error) {
+	var cert Cert
+	if err := s.r.Request(ctx, http.MethodPatch, fmt.Sprintf("/cdn/sslData/%d", id), req, &cert); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return &cert, nil
+}
+
 func (s *Service) Delete(ctx context.Context, id int64) error {
 	if err := s.r.Request(ctx, http.MethodDelete, fmt.Sprintf("/cdn/sslData/%d", id), nil, nil); err != nil {
 		return fmt.Errorf("request: %w", err)
