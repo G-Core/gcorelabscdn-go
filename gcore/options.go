@@ -45,6 +45,7 @@ type Options struct {
 	StaticResponseHeaders       *StaticResponseHeaders       `json:"static_response_headers"`
 	TLSVersions                 *TLSVersions                 `json:"tls_versions"`
 	UseDefaultLEChain           *UseDefaultLEChain           `json:"use_default_le_chain"`
+	UseDNS01LEChallenge         *UseDNS01LEChallenge         `json:"use_dns01_le_challenge"`
 	UserAgentACL                *UserAgentACL                `json:"user_agent_acl"`
 	UseRSALECert                *UseRSALECert                `json:"use_rsa_le_cert"`
 	WAAP                        *WAAP                        `json:"waap"`
@@ -301,6 +302,11 @@ type TLSVersions struct {
 }
 
 type UseDefaultLEChain struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
+}
+
+type UseDNS01LEChallenge struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
 }
