@@ -40,6 +40,10 @@ type CreateRequest struct {
 	SecondaryHostnames []string       `json:"secondaryHostnames,omitempty"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
+	ProxySSLEnabled    bool           `json:"proxy_ssl_enabled"`
+	ProxySSLCA         int            `json:"proxy_ssl_ca,omitempty"`
+	ProxySSLData       int            `json:"proxy_ssl_data,omitempty"`
+	PrimaryResource    int            `json:"primary_resource,omitempty"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
@@ -51,6 +55,9 @@ type UpdateRequest struct {
 	SecondaryHostnames []string       `json:"secondaryHostnames"`
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData,omitempty"`
+	ProxySSLEnabled    bool           `json:"proxy_ssl_enabled"`
+	ProxySSLCA         *int           `json:"proxy_ssl_ca"`
+	ProxySSLData       *int           `json:"proxy_ssl_data"`
 	Options            *gcore.Options `json:"options,omitempty"`
 }
 
@@ -74,5 +81,9 @@ type Resource struct {
 	SSlEnabled         bool           `json:"sslEnabled"`
 	SSLData            int            `json:"sslData"`
 	OriginProtocol     Protocol       `json:"originProtocol"`
+	ProxySSLEnabled    bool           `json:"proxy_ssl_enabled"`
+	ProxySSLCA         int            `json:"proxy_ssl_ca"`
+	ProxySSLData       int            `json:"proxy_ssl_data"`
+	PrimaryResource    int            `json:"primary_resource"`
 	Options            *gcore.Options `json:"options"`
 }
