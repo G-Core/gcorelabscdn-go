@@ -17,7 +17,7 @@ type Cert struct {
 	Name                string    `json:"name"`
 	Deleted             bool      `json:"deleted"`
 	CertIssuer          string    `json:"cert_issuer"`
-	CertSubjectCN       string    `json:"cert_subjeck_cn"`
+	CertSubjectCN       string    `json:"cert_subject_cn"`
 	ValidityNotBefore   time.Time `json:"validity_not_before"`
 	ValidityNotAfter    time.Time `json:"validity_not_after"`
 	HasRelatedResources bool      `json:"hasRelatedResources"`
