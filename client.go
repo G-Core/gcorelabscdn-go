@@ -8,6 +8,7 @@ import (
 	"github.com/G-Core/gcorelabscdn-go/presets"
 	"github.com/G-Core/gcorelabscdn-go/resources"
 	"github.com/G-Core/gcorelabscdn-go/rules"
+	"github.com/G-Core/gcorelabscdn-go/ruletemplates"
 	"github.com/G-Core/gcorelabscdn-go/sslcerts"
 )
 
@@ -19,6 +20,7 @@ type ClientService interface {
 	SSLCerts() sslcerts.SSLCertService
 	Presets() presets.PresetsService
 	CACerts() cacerts.CACertService
+	RuleTemplates() ruletemplates.RuleTemplateService
 }
 
 var _ ClientService = (*Service)(nil)
@@ -32,6 +34,7 @@ type Service struct {
 	sslCertsService        sslcerts.SSLCertService
 	presetsService         presets.PresetsService
 	caCertsService         cacerts.CACertService
+	ruleTemplatesService   ruletemplates.RuleTemplateService
 }
 
 func NewService(r gcore.Requester) *Service {
@@ -44,6 +47,7 @@ func NewService(r gcore.Requester) *Service {
 		sslCertsService:        sslcerts.NewService(r),
 		presetsService:         presets.NewService(r),
 		caCertsService:         cacerts.NewService(r),
+		ruleTemplatesService:   ruletemplates.NewService(r),
 	}
 }
 
@@ -73,4 +77,8 @@ func (s *Service) Presets() presets.PresetsService {
 
 func (s *Service) CACerts() cacerts.CACertService {
 	return s.caCertsService
+}
+
+func (s *Service) RuleTemplates() ruletemplates.RuleTemplateService {
+	return s.ruleTemplatesService
 }
