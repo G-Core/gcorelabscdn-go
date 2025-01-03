@@ -7,6 +7,7 @@ import (
 	"github.com/G-Core/gcorelabscdn-go/presets"
 	"github.com/G-Core/gcorelabscdn-go/resources"
 	"github.com/G-Core/gcorelabscdn-go/rules"
+	"github.com/G-Core/gcorelabscdn-go/ruletemplates"
 	"github.com/G-Core/gcorelabscdn-go/sslcerts"
 )
 
@@ -17,6 +18,7 @@ type ClientService interface {
 	OriginShielding() originshielding.OriginShieldingService
 	SSLCerts() sslcerts.SSLCertService
 	Presets() presets.PresetsService
+	RuleTemplates() ruletemplates.RuleTemplateService
 }
 
 var _ ClientService = (*Service)(nil)
@@ -29,6 +31,7 @@ type Service struct {
 	originShieldingService originshielding.OriginShieldingService
 	sslCertsService        sslcerts.SSLCertService
 	presetsService         presets.PresetsService
+	ruleTemplatesService   ruletemplates.RuleTemplateService
 }
 
 func NewService(r gcore.Requester) *Service {
@@ -40,6 +43,7 @@ func NewService(r gcore.Requester) *Service {
 		originShieldingService: originshielding.NewService(r),
 		sslCertsService:        sslcerts.NewService(r),
 		presetsService:         presets.NewService(r),
+		ruleTemplatesService:   ruletemplates.NewService(r),
 	}
 }
 
@@ -65,4 +69,8 @@ func (s *Service) SSLCerts() sslcerts.SSLCertService {
 
 func (s *Service) Presets() presets.PresetsService {
 	return s.presetsService
+}
+
+func (s *Service) RuleTemplates() ruletemplates.RuleTemplateService {
+	return s.ruleTemplatesService
 }
