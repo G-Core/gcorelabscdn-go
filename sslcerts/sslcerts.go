@@ -29,12 +29,12 @@ type CreateRequest struct {
 	Cert           string `json:"sslCertificate"`
 	PrivateKey     string `json:"sslPrivateKey"`
 	Automated      bool   `json:"automated"`
-	ValidateRootCA bool   `json:"validate_root_ca,omitempty"`
+	ValidateRootCA bool   `json:"validate_root_ca"`
 }
 
 type UpdateRequest struct {
 	Name           string `json:"name,omitempty"`
 	Cert           string `json:"sslCertificate,omitempty"`
 	PrivateKey     string `json:"sslPrivateKey,omitempty"`
-	ValidateRootCA bool   `json:"validate_root_ca,omitempty"`
+	ValidateRootCA bool   `json:"validate_root_ca"`
 }
