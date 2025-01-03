@@ -1,6 +1,7 @@
 package gcdn
 
 import (
+	"github.com/G-Core/gcorelabscdn-go/cacerts"
 	"github.com/G-Core/gcorelabscdn-go/gcore"
 	"github.com/G-Core/gcorelabscdn-go/origingroups"
 	"github.com/G-Core/gcorelabscdn-go/originshielding"
@@ -18,6 +19,7 @@ type ClientService interface {
 	OriginShielding() originshielding.OriginShieldingService
 	SSLCerts() sslcerts.SSLCertService
 	Presets() presets.PresetsService
+	CACerts() cacerts.CACertService
 	RuleTemplates() ruletemplates.RuleTemplateService
 }
 
@@ -31,6 +33,7 @@ type Service struct {
 	originShieldingService originshielding.OriginShieldingService
 	sslCertsService        sslcerts.SSLCertService
 	presetsService         presets.PresetsService
+	caCertsService         cacerts.CACertService
 	ruleTemplatesService   ruletemplates.RuleTemplateService
 }
 
@@ -43,6 +46,7 @@ func NewService(r gcore.Requester) *Service {
 		originShieldingService: originshielding.NewService(r),
 		sslCertsService:        sslcerts.NewService(r),
 		presetsService:         presets.NewService(r),
+		caCertsService:         cacerts.NewService(r),
 		ruleTemplatesService:   ruletemplates.NewService(r),
 	}
 }
@@ -69,6 +73,10 @@ func (s *Service) SSLCerts() sslcerts.SSLCertService {
 
 func (s *Service) Presets() presets.PresetsService {
 	return s.presetsService
+}
+
+func (s *Service) CACerts() cacerts.CACertService {
+	return s.caCertsService
 }
 
 func (s *Service) RuleTemplates() ruletemplates.RuleTemplateService {
