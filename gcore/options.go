@@ -30,6 +30,7 @@ type Options struct {
 	ProxyReadTimeout            *ProxyReadTimeout            `json:"proxy_read_timeout"`
 	QueryParamsBlacklist        *QueryParamsBlacklist        `json:"query_params_blacklist"`
 	QueryParamsWhitelist        *QueryParamsWhitelist        `json:"query_params_whitelist"`
+	QueryStringForwarding       *QueryStringForwarding       `json:"query_string_forwarding"`
 	RedirectHttpsToHttp         *RedirectHttpsToHttp         `json:"redirect_https_to_http"`
 	RedirectHttpToHttps         *RedirectHttpToHttps         `json:"redirect_http_to_https"`
 	ReferrerACL                 *ReferrerACL                 `json:"referrer_acl"`
@@ -214,6 +215,12 @@ type QueryParamsBlacklist struct {
 type QueryParamsWhitelist struct {
 	Enabled bool     `json:"enabled"`
 	Value   []string `json:"value"`
+}
+
+type QueryStringForwarding struct {
+    Enabled              bool     `json:"enabled"`
+    ForwardFromFileTypes []string `json:"forward_from_file_types"`
+    ForwardToFileTypes   []string `json:"forward_to_file_types"`
 }
 
 type RedirectHttpsToHttp struct {
