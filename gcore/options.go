@@ -113,6 +113,8 @@ type FastEdgeAppConfig struct {
 	Enabled          bool   `json:"enabled"`
 	AppID            string `json:"app_id"`
 	InterruptOnError bool   `json:"interrupt_on_error"`
+	ExecuteOnEdge    bool   `json:"execute_on_edge"`
+	ExecuteOnShield  bool   `json:"execute_on_shield"`
 }
 
 type FastEdge struct {
@@ -218,9 +220,9 @@ type QueryParamsWhitelist struct {
 }
 
 type QueryStringForwarding struct {
-    Enabled              bool     `json:"enabled"`
-    ForwardFromFileTypes []string `json:"forward_from_file_types"`
-    ForwardToFileTypes   []string `json:"forward_to_file_types"`
+	Enabled              bool     `json:"enabled"`
+	ForwardFromFileTypes []string `json:"forward_from_file_types"`
+	ForwardToFileTypes   []string `json:"forward_to_file_types"`
 }
 
 type RedirectHttpsToHttp struct {
