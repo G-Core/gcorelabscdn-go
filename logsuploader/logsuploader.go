@@ -13,4 +13,9 @@ type LogsUploaderService interface {
 	TargetGet(ctx context.Context, id int64) (*Target, error)
 	TargetUpdate(ctx context.Context, id int64, req *TargetUpdateRequest) (*Target, error)
 	TargetDelete(ctx context.Context, targetID int64) error
+	ConfigCreate(ctx context.Context, req *ConfigCreateRequest) (*Config, error)
+	ConfigList(ctx context.Context, limit, offset int) ([]Config, error)
+	ConfigGet(ctx context.Context, id int64) (*Config, error)
+	ConfigUpdate(ctx context.Context, id int64, req *ConfigUpdateRequest) (*Config, error)
+	ConfigDelete(ctx context.Context, configID int64) error
 }

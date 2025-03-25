@@ -134,3 +134,61 @@ func (s *Service) TargetDelete(ctx context.Context, id int64) error {
 
 	return nil
 }
+
+func (s *Service) ConfigCreate(ctx context.Context, req *ConfigCreateRequest) (*Config, error) {
+	var config Config
+
+	if err := s.r.Request(ctx, http.MethodPost, "/cdn/logs_uploader/configs", req, &config); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return &config, nil
+}
+
+func (s *Service) ConfigList(ctx context.Context, limit, offset int) ([]Config, error) {
+	var configs []Config
+	params := url.Values{}
+	if limit > 0 {
+		params.Add("limit", fmt.Sprintf("%d", limit))
+	}
+	if offset > 0 {
+		params.Add("offset", fmt.Sprintf("%d", offset))
+	}
+
+	path := "/cdn/logs_uploader/configs"
+	if len(params) > 0 {
+		path = fmt.Sprintf("%s?%s", path, params.Encode())
+	}
+
+	if err := s.r.Request(ctx, http.MethodGet, path, nil, &configs); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return configs, nil
+}
+
+func (s *Service) ConfigGet(ctx context.Context, id int64) (*Config, error) {
+	var config Config
+	if err := s.r.Request(ctx, http.MethodGet, fmt.Sprintf("/cdn/logs_uploader/configs/%d", id), nil, &config); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return &config, nil
+}
+
+func (s *Service) ConfigUpdate(ctx context.Context, id int64, req *ConfigUpdateRequest) (*Config, error) {
+	var config Config
+	if err := s.r.Request(ctx, http.MethodPatch, fmt.Sprintf("/cdn/logs_uploader/configs/%d", id), req, &config); err != nil {
+		return nil, fmt.Errorf("request: %w", err)
+	}
+
+	return &config, nil
+}
+
+func (s *Service) ConfigDelete(ctx context.Context, id int64) error {
+	if err := s.r.Request(ctx, http.MethodDelete, fmt.Sprintf("/cdn/logs_uploader/configs/%d", id), nil, nil); err != nil {
+		return fmt.Errorf("request: %w", err)
+	}
+
+	return nil
+}
