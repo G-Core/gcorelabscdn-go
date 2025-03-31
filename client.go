@@ -4,6 +4,7 @@ import (
 	"github.com/G-Core/gcorelabscdn-go/cacerts"
 	"github.com/G-Core/gcorelabscdn-go/clients"
 	"github.com/G-Core/gcorelabscdn-go/gcore"
+	"github.com/G-Core/gcorelabscdn-go/logsuploader"
 	"github.com/G-Core/gcorelabscdn-go/origingroups"
 	"github.com/G-Core/gcorelabscdn-go/originshielding"
 	"github.com/G-Core/gcorelabscdn-go/presets"
@@ -23,6 +24,7 @@ type ClientService interface {
 	CACerts() cacerts.CACertService
 	RuleTemplates() ruletemplates.RuleTemplateService
 	ClientsMe() clients.ClientsMeService
+	LogsUploader() logsuploader.LogsUploaderService
 }
 
 var _ ClientService = (*Service)(nil)
@@ -38,6 +40,7 @@ type Service struct {
 	caCertsService         cacerts.CACertService
 	ruleTemplatesService   ruletemplates.RuleTemplateService
 	clientsMeService       clients.ClientsMeService
+	logsUploaderService    logsuploader.LogsUploaderService
 }
 
 func NewService(r gcore.Requester) *Service {
@@ -52,6 +55,7 @@ func NewService(r gcore.Requester) *Service {
 		caCertsService:         cacerts.NewService(r),
 		ruleTemplatesService:   ruletemplates.NewService(r),
 		clientsMeService:       clients.NewService(r),
+		logsUploaderService:    logsuploader.NewService(r),
 	}
 }
 
@@ -89,4 +93,8 @@ func (s *Service) RuleTemplates() ruletemplates.RuleTemplateService {
 
 func (s *Service) ClientsMe() clients.ClientsMeService {
 	return s.clientsMeService
+}
+
+func (s *Service) LogsUploader() logsuploader.LogsUploaderService {
+	return s.logsUploaderService
 }
