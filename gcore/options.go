@@ -119,10 +119,10 @@ type FastEdgeAppConfig struct {
 
 type FastEdge struct {
 	Enabled           bool               `json:"enabled"`
-	OnRequestHeaders  *FastEdgeAppConfig `json:"on_request_headers"`
-	OnRequestBody     *FastEdgeAppConfig `json:"on_request_body"`
-	OnResponseHeaders *FastEdgeAppConfig `json:"on_response_headers"`
-	OnResponseBody    *FastEdgeAppConfig `json:"on_response_body"`
+	OnRequestHeaders  *FastEdgeAppConfig `json:"on_request_headers,omitempty"`
+	OnRequestBody     *FastEdgeAppConfig `json:"on_request_body,omitempty"`
+	OnResponseHeaders *FastEdgeAppConfig `json:"on_response_headers,omitempty"`
+	OnResponseBody    *FastEdgeAppConfig `json:"on_response_body,omitempty"`
 }
 
 type FetchCompressed struct {
