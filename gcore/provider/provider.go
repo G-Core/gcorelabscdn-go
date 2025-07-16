@@ -35,7 +35,7 @@ func (c *Client) Request(ctx context.Context, method, path string, payload inter
 	if payload != nil {
 		payloadBuf := new(bytes.Buffer)
 		if err := json.NewEncoder(payloadBuf).Encode(payload); err != nil {
-			return fmt.Errorf("encode req payload: %w", err)
+			return fmt.Errorf("encode request payload: %w", err)
 		}
 
 		body = payloadBuf
@@ -44,27 +44,30 @@ func (c *Client) Request(ctx context.Context, method, path string, payload inter
 	// TODO: figure out how to drop trailing slash
 	req, err := http.NewRequestWithContext(ctx, method, c.baseURL+path, body)
 	if err != nil {
-		return fmt.Errorf("new request: %w", err)
+		return fmt.Errorf("create HTTP request: %w", err)
 	}
 
 	resp, err := c.do(req)
 	if err != nil {
-		return fmt.Errorf("do request: %w", err)
+		return fmt.Errorf("execute HTTP request: %w", err)
 	}
+
+	rawBody, _ := io.ReadAll(resp.Body)
 
 	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusBadRequest {
 		var errResp gcore.ErrorResponse
 		errResp.StatusCode = resp.StatusCode
-		if err := json.NewDecoder(resp.Body).Decode(&errResp); err != nil {
-			return fmt.Errorf("decode err resp %d: %w", resp.StatusCode, err)
+
+		if err := json.Unmarshal(rawBody, &errResp); err != nil {
+			return fmt.Errorf("unexpected response, status: %d, body: %s", resp.StatusCode, string(rawBody))
 		}
 
 		return &errResp
 	}
 
 	if result != nil {
-		if err := json.NewDecoder(resp.Body).Decode(result); err != nil {
-			return fmt.Errorf("decode successful resp %d: %w", resp.StatusCode, err)
+		if err := json.Unmarshal(rawBody, result); err != nil {
+			return fmt.Errorf("unable to decode response, status: %d, body: %s", resp.StatusCode, string(rawBody))
 		}
 	}
 
