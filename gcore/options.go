@@ -30,6 +30,7 @@ type Options struct {
 	ProxyReadTimeout            *ProxyReadTimeout            `json:"proxy_read_timeout"`
 	QueryParamsBlacklist        *QueryParamsBlacklist        `json:"query_params_blacklist"`
 	QueryParamsWhitelist        *QueryParamsWhitelist        `json:"query_params_whitelist"`
+	QueryStringForwarding       *QueryStringForwarding       `json:"query_string_forwarding"`
 	RedirectHttpsToHttp         *RedirectHttpsToHttp         `json:"redirect_https_to_http"`
 	RedirectHttpToHttps         *RedirectHttpToHttps         `json:"redirect_http_to_https"`
 	ReferrerACL                 *ReferrerACL                 `json:"referrer_acl"`
@@ -45,8 +46,10 @@ type Options struct {
 	StaticResponseHeaders       *StaticResponseHeaders       `json:"static_response_headers"`
 	TLSVersions                 *TLSVersions                 `json:"tls_versions"`
 	UseDefaultLEChain           *UseDefaultLEChain           `json:"use_default_le_chain"`
+	UseDNS01LEChallenge         *UseDNS01LEChallenge         `json:"use_dns01_le_challenge"`
 	UserAgentACL                *UserAgentACL                `json:"user_agent_acl"`
 	UseRSALECert                *UseRSALECert                `json:"use_rsa_le_cert"`
+	WAAP                        *WAAP                        `json:"waap"`
 	WAF                         *WAF                         `json:"waf"`
 	WebSockets                  *WebSockets                  `json:"websockets"`
 }
@@ -110,11 +113,16 @@ type FastEdgeAppConfig struct {
 	Enabled          bool   `json:"enabled"`
 	AppID            string `json:"app_id"`
 	InterruptOnError bool   `json:"interrupt_on_error"`
+	ExecuteOnEdge    bool   `json:"execute_on_edge"`
+	ExecuteOnShield  bool   `json:"execute_on_shield"`
 }
 
 type FastEdge struct {
-	Enabled          bool               `json:"enabled"`
-	OnRequestHeaders *FastEdgeAppConfig `json:"on_request_headers"`
+	Enabled           bool               `json:"enabled"`
+	OnRequestHeaders  *FastEdgeAppConfig `json:"on_request_headers,omitempty"`
+	OnRequestBody     *FastEdgeAppConfig `json:"on_request_body,omitempty"`
+	OnResponseHeaders *FastEdgeAppConfig `json:"on_response_headers,omitempty"`
+	OnResponseBody    *FastEdgeAppConfig `json:"on_response_body,omitempty"`
 }
 
 type FetchCompressed struct {
@@ -214,6 +222,12 @@ type QueryParamsWhitelist struct {
 	Value   []string `json:"value"`
 }
 
+type QueryStringForwarding struct {
+	Enabled              bool     `json:"enabled"`
+	ForwardFromFileTypes []string `json:"forward_from_file_types"`
+	ForwardToFileTypes   []string `json:"forward_to_file_types"`
+}
+
 type RedirectHttpsToHttp struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
@@ -304,6 +318,11 @@ type UseDefaultLEChain struct {
 	Value   bool `json:"value"`
 }
 
+type UseDNS01LEChallenge struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
+}
+
 type UserAgentACL struct {
 	Enabled        bool     `json:"enabled"`
 	PolicyType     string   `json:"policy_type"`
@@ -311,6 +330,11 @@ type UserAgentACL struct {
 }
 
 type UseRSALECert struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
+}
+
+type WAAP struct {
 	Enabled bool `json:"enabled"`
 	Value   bool `json:"value"`
 }

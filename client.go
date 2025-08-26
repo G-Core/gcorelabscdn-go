@@ -1,13 +1,17 @@
 package gcdn
 
 import (
+	"github.com/G-Core/gcorelabscdn-go/cacerts"
+	"github.com/G-Core/gcorelabscdn-go/clients"
 	"github.com/G-Core/gcorelabscdn-go/gcore"
 	"github.com/G-Core/gcorelabscdn-go/invalidations"
+	"github.com/G-Core/gcorelabscdn-go/logsuploader"
 	"github.com/G-Core/gcorelabscdn-go/origingroups"
 	"github.com/G-Core/gcorelabscdn-go/originshielding"
 	"github.com/G-Core/gcorelabscdn-go/presets"
 	"github.com/G-Core/gcorelabscdn-go/resources"
 	"github.com/G-Core/gcorelabscdn-go/rules"
+	"github.com/G-Core/gcorelabscdn-go/ruletemplates"
 	"github.com/G-Core/gcorelabscdn-go/sslcerts"
 	"github.com/G-Core/gcorelabscdn-go/statistics"
 )
@@ -19,6 +23,10 @@ type ClientService interface {
 	OriginShielding() originshielding.OriginShieldingService
 	SSLCerts() sslcerts.SSLCertService
 	Presets() presets.PresetsService
+	CACerts() cacerts.CACertService
+	RuleTemplates() ruletemplates.RuleTemplateService
+	ClientsMe() clients.ClientsMeService
+	LogsUploader() logsuploader.LogsUploaderService
 	Statistics() statistics.StatisticsService
 	Invalidations() invalidations.InvalidationsService
 }
@@ -33,6 +41,10 @@ type Service struct {
 	originShieldingService originshielding.OriginShieldingService
 	sslCertsService        sslcerts.SSLCertService
 	presetsService         presets.PresetsService
+	caCertsService         cacerts.CACertService
+	ruleTemplatesService   ruletemplates.RuleTemplateService
+	clientsMeService       clients.ClientsMeService
+	logsUploaderService    logsuploader.LogsUploaderService
 	statisticsService      statistics.StatisticsService
 	invalidationsService   invalidations.InvalidationsService
 }
@@ -46,6 +58,10 @@ func NewService(r gcore.Requester) *Service {
 		originShieldingService: originshielding.NewService(r),
 		sslCertsService:        sslcerts.NewService(r),
 		presetsService:         presets.NewService(r),
+		caCertsService:         cacerts.NewService(r),
+		ruleTemplatesService:   ruletemplates.NewService(r),
+		clientsMeService:       clients.NewService(r),
+		logsUploaderService:    logsuploader.NewService(r),
 		statisticsService:      statistics.NewService(r),
 		invalidationsService:   invalidations.NewService(r),
 	}
@@ -73,6 +89,22 @@ func (s *Service) SSLCerts() sslcerts.SSLCertService {
 
 func (s *Service) Presets() presets.PresetsService {
 	return s.presetsService
+}
+
+func (s *Service) CACerts() cacerts.CACertService {
+	return s.caCertsService
+}
+
+func (s *Service) RuleTemplates() ruletemplates.RuleTemplateService {
+	return s.ruleTemplatesService
+}
+
+func (s *Service) ClientsMe() clients.ClientsMeService {
+	return s.clientsMeService
+}
+
+func (s *Service) LogsUploader() logsuploader.LogsUploaderService {
+	return s.logsUploaderService
 }
 
 func (s *Service) Statistics() statistics.StatisticsService {
