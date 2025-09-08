@@ -13,21 +13,20 @@ type ClientsMeService interface {
 type ServiceInfo struct {
 	Enabled bool      `json:"enabled"`
 	Status  string    `json:"status"`
-	Updated time.Time `json:"updated,omitempty"`
+	Updated time.Time `json:"updated"`
 }
 
 type ClientsMe struct {
 	ID                        int64        `json:"id"`
 	Cname                     string       `json:"cname"`
-	Created                   time.Time    `json:"created,omitempty"`
-	Updated                   time.Time    `json:"updated,omitempty"`
+	Created                   time.Time    `json:"created"`
+	Updated                   time.Time    `json:"updated"`
 	UtilizationLevel          int          `json:"utilization_level"`
 	UseBalancer               bool         `json:"use_balancer"`
 	AutoSuspendEnabled        bool         `json:"auto_suspend_enabled"`
-	CDNResourcesRulesMaxCount int          `json:"cdn_resources_rules_max_count,omitempty"`
-	Service                   *ServiceInfo `json:"service,omitempty"`
+	CDNResourcesRulesMaxCount int          `json:"cdn_resources_rules_max_count"`
+	Service                   ServiceInfo  `json:"service"`
 }
-
 
 type ClientsMeUpdateRequest struct {
     UtilizationLevel int `json:"utilization_level"`
