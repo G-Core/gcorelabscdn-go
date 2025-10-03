@@ -24,3 +24,12 @@ func (s *Service) Get(ctx context.Context) (*ClientsMe, error) {
 
 	return &client, nil
 }
+
+func (s *Service) Update(ctx context.Context, req *ClientsMeUpdateRequest) (*ClientsMe, error) {
+    var updated ClientsMe
+    if err := s.r.Request(ctx, http.MethodPut, "/cdn/clients/me", req, &updated); err != nil {
+        return nil, fmt.Errorf("request: %w", err)
+    }
+    return &updated, nil
+}
+
