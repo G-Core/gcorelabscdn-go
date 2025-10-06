@@ -226,6 +226,8 @@ type QueryStringForwarding struct {
 	Enabled              bool     `json:"enabled"`
 	ForwardFromFileTypes []string `json:"forward_from_file_types"`
 	ForwardToFileTypes   []string `json:"forward_to_file_types"`
+	ForwardOnlyKeys      []string `json:"forward_only_keys,omitempty"`
+	ForwardExceptKeys    []string `json:"forward_except_keys,omitempty"`
 }
 
 type RedirectHttpsToHttp struct {
