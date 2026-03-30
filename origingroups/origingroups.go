@@ -21,9 +21,12 @@ type GroupRequest struct {
 }
 
 type SourceRequest struct {
-	Source  string `json:"source"`
-	Backup  bool   `json:"backup"`
-	Enabled bool   `json:"enabled"`
+	Source             string    `json:"source,omitempty"`
+	Backup             bool      `json:"backup"`
+	Enabled            bool      `json:"enabled"`
+	OriginType         string    `json:"origin_type,omitempty"`
+	Config             *S3Config `json:"config,omitempty"`
+	HostHeaderOverride *string   `json:"host_header_override,omitempty"`
 }
 
 type OriginGroup struct {
@@ -37,9 +40,22 @@ type OriginGroup struct {
 }
 
 type Source struct {
-	Source  string `json:"source"`
-	Backup  bool   `json:"backup"`
-	Enabled bool   `json:"enabled"`
+	Source             string    `json:"source,omitempty"`
+	Backup             bool      `json:"backup"`
+	Enabled            bool      `json:"enabled"`
+	OriginType         string    `json:"origin_type,omitempty"`
+	Config             *S3Config `json:"config,omitempty"`
+	HostHeaderOverride *string   `json:"host_header_override,omitempty"`
+}
+
+type S3Config struct {
+	S3Type            string `json:"s3_type"`
+	S3BucketName      string `json:"s3_bucket_name"`
+	S3Region          string `json:"s3_region,omitempty"`
+	S3StorageHostname string `json:"s3_storage_hostname,omitempty"`
+	S3AuthType        string `json:"s3_auth_type,omitempty"`
+	S3AccessKeyID     string `json:"s3_access_key_id"`
+	S3SecretAccessKey string `json:"s3_secret_access_key"`
 }
 
 type AuthS3 struct {
