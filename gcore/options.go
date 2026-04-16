@@ -34,7 +34,6 @@ type Options struct {
 	RedirectHttpsToHttp         *RedirectHttpsToHttp         `json:"redirect_https_to_http"`
 	RedirectHttpToHttps         *RedirectHttpToHttps         `json:"redirect_http_to_https"`
 	ReferrerACL                 *ReferrerACL                 `json:"referrer_acl"`
-	RequestLimiter              *RequestLimiter              `json:"request_limiter"`
 	ResponseHeadersHidingPolicy *ResponseHeadersHidingPolicy `json:"response_headers_hiding_policy"`
 	Rewrite                     *Rewrite                     `json:"rewrite"`
 	SecureKey                   *SecureKey                   `json:"secure_key"`
@@ -244,14 +243,6 @@ type ReferrerACL struct {
 	Enabled        bool     `json:"enabled"`
 	PolicyType     string   `json:"policy_type"`
 	ExceptedValues []string `json:"excepted_values"`
-}
-
-type RequestLimiter struct {
-	Enabled  bool   `json:"enabled"`
-	Rate     int    `json:"rate"`
-	Burst    int    `json:"burst"`
-	RateUnit string `json:"rate_unit"`
-	Delay    int    `json:"delay"`
 }
 
 type ResponseHeadersHidingPolicy struct {
