@@ -54,8 +54,9 @@ type S3Config struct {
 	S3Region          string `json:"s3_region,omitempty"`
 	S3StorageHostname string `json:"s3_storage_hostname,omitempty"`
 	S3AuthType        string `json:"s3_auth_type,omitempty"`
-	S3AccessKeyID     string `json:"s3_access_key_id"`
-	S3SecretAccessKey string `json:"s3_secret_access_key"`
+	S3AccessKeyID     string `json:"s3_access_key_id,omitempty"`
+	S3SecretAccessKey string `json:"s3_secret_access_key,omitempty"`
+	StorageID         int64  `json:"storage_id,omitempty"`
 }
 
 type AuthS3 struct {
