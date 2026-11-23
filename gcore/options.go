@@ -24,6 +24,7 @@ type Options struct {
 	ImageStack                  *ImageStack                  `json:"image_stack"`
 	IPAddressACL                *IPAddressACL                `json:"ip_address_acl"`
 	LimitBandwidth              *LimitBandwidth              `json:"limit_bandwidth"`
+	NetworkErrorLogging         *NetworkErrorLogging         `json:"network_error_logging"`
 	ProxyCacheKey               *ProxyCacheKey               `json:"proxy_cache_key"`
 	ProxyCacheMethodsSet        *ProxyCacheMethodsSet        `json:"proxy_cache_methods_set"`
 	ProxyConnectTimeout         *ProxyConnectTimeout         `json:"proxy_connect_timeout"`
@@ -189,6 +190,11 @@ type LimitBandwidth struct {
 	LimitType string `json:"limit_type"`
 	Speed     int    `json:"speed"`
 	Buffer    int    `json:"buffer"`
+}
+
+type NetworkErrorLogging struct {
+	Enabled bool `json:"enabled"`
+	Value   bool `json:"value"`
 }
 
 type ProxyCacheKey struct {
